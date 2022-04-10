@@ -12,7 +12,7 @@ public class BudgetController {
     private final BudgetService budgetService;
 
     @GetMapping
-    public List<Budget> getUserBudgets(@RequestBody long userID){
-        return budgetService.getUserBudgets(userID);
+    public List<Budget> getUserBudgets(){
+        return budgetService.getAllBudgets();
     }
 }

@@ -36,6 +36,8 @@ public class Budget {
     @Column(name="endDate")
     private Date endDate;
 
+    //todo: many to one transactions reference bridging table
+
 //    @ManyToMany(
 //
 //    )

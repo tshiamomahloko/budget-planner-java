@@ -10,7 +10,7 @@ import java.util.List;
 public class BudgetService {
     private final BudgetRepository budgetRepository;
 
-    public List<Budget> getUserBudgets(Long userID){
-        return budgetRepository.findBudgetsByUserID(userID);
+    public List<Budget> getAllBudgets(){
+        return budgetRepository.findAll();
     }
 }
