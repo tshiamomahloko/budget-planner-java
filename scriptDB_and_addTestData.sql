@@ -269,3 +269,7 @@ GO
 INSERT INTO CashFlowBudget(BudgetID, CashFlowID)
 Values(2, 2), (2, 3), (2, 4), (2,5), (3,6), (3,7), (3,8)
 GO
+
+ALTER TABLE Budget
+ADD CONSTRAINT checkStartDate CHECK (StartDate < EndDate)
+GO
