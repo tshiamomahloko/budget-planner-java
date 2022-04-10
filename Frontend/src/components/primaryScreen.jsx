@@ -2,16 +2,27 @@ import "../component-styles/primaryScreen.css";
 import backtemp from "../backtmp.png";
 import menu from "../burgermenu.png";
 import Transaction from "./transactionItem.jsx";
+import user1 from "../user1.png";
 
 function App(props) {
+
+  function MinimizeMenu(){
+    document.getElementById("primaryScreenCMP1").style.visibility="hidden";
+  }
+
+  function MaximizeMenu(){
+    document.getElementById("primaryScreenCMP1").style.visibility="visible";
+  }
+
+
   return (
     <div className="primaryScreenMain">
       <div className="primaryScreenMenuBar">
-        <button className="primaryScreenBurgerMenuButton">
+        <button onClick ={()=>MaximizeMenu()} className="primaryScreenBurgerMenuButton">
           <img src={menu} className="primaryScreenBurgerMenuIcon"></img>
         </button>
         <button className="primaryScreenBudgetDropdownContainer">
-          April ▼
+          April
         </button>
         <button className="primaryScreenAddBudget">+</button>
       </div>
@@ -56,6 +67,29 @@ function App(props) {
       </div>
 
       <div className="primaryScreenAddIncomeExpense">+</div>
+      <div id="primaryScreenCMP1" className="primaryScreenSlideOutMenu">
+      <div className="primaryScreenSlideOutMenuTitle">
+        Paulo N.
+        </div>
+        <button onClick={() => props.FECresponse1()} className="primaryScreenSlideOutMenuSignOut">
+          {"Sign out"}
+        </button>
+      
+      <div className="primaryScreenSlideOutMenuIconSpace">
+      <img src={user1} className="primaryScreenSlideOutMenuIcon">
+      </img>
+      </div>
+      <button className="primaryScreenSlideOutMenuEditBudgets">
+          View or Edit Budgets
+      </button>
+      <button className="primaryScreenSlideOutMenuExportBudgets">
+          Export Budgets
+      </button>
+      <button  onClick ={()=>MinimizeMenu()} className="primaryScreenSlideOutMenuMinimize">
+          {"Close Menu"}
+        </button>
+      </div>
+
     </div>
   );
 }

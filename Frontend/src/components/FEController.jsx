@@ -27,7 +27,7 @@ function App() {
           ></Login>
         );
       case 2:
-        return <PrimaryScreen></PrimaryScreen>;
+        return <PrimaryScreen FECresponse1={() => setScreen(0)}></PrimaryScreen>;
       case 3:
         return <SignUp  FECresponse1={() => setScreen(0)} FECresponse2={() => setScreen(1)}
         FECresponse3={() => setScreen(2)}></SignUp>;
