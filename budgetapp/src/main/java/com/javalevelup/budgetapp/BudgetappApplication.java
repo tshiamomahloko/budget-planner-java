@@ -25,8 +25,6 @@ public class BudgetappApplication {
 		return args -> {
 			Faker faker = new Faker();
 
-			Date startDate = new Date(1649769300000L);
-			Date endDate = new Date(1651324500000L);
 			Budget budget = new Budget("April", new Date(1649769300000L), new Date(1651324500000L));
 			Budget budget2 = new Budget("May", new Date(1651324500000L), new Date(1653916500000L));
 
@@ -34,6 +32,7 @@ public class BudgetappApplication {
 			CashFlow cashFlow2 = new CashFlow();
 			budget.addCashFlowToBudget(cashFlow);
 			budget2.addCashFlowToBudget(cashFlow2);
+
 			br.save(budget);
 			br.save(budget2);
 
