@@ -19,4 +19,49 @@
       rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     }
 
-    
+    .exportBudgetBudgetsContainer{
+        position: absolute;
+        top:130px;
+        background-color: rgb(255, 255, 255);
+        height:calc(80vh - 80px);
+        width: 90vw;
+        left: 5vw;
+        border-radius: 13px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      overflow: auto;
+    }
+
+    .exportBudgetBudgetExportButton{
+        height:60px;
+        width:90%;
+        position: absolute;
+        left:5%;
+        bottom:20px;
+        border-radius: 13px;
+        color: rgb(98, 0, 255);
+        font-weight: 600;
+        font-size: 18px;
+        background-color: rgba(188, 139, 201, 0.651);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        border: none;
+    }
+
+    .exportBudgetsTitle{
+        
+        width:50vw;
+        left:25vw;
+        position: absolute;
+        text-align: center;
+        top:80px;
+        font-size: 19px;
+        font-weight: 600;
+    }
+
+    .exportBudgetBudgetsContainerTitle{
+        padding: 15px 10px 15px 10px;
+        border-bottom-color:rgba(128, 128, 128, 0.384);
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+    }
