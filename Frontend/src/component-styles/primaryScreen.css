@@ -112,11 +112,11 @@ right: 30px;
     .primaryScreenAddBudget{
 position: absolute;
 right:15px;
-top:15px;
+top:12px;
 height:45px;
 width: 45px;
 font-size: 38px;
-font-weight: 200;
+font-weight: 400;
 background-color: var(--offwhite);
 border:none;
     }
@@ -209,12 +209,12 @@ padding-top: 10px;
 }
 
 .primaryScreenAddIncomeExpense{
-    width:60px;
-    height:60px;
+    width:50px;
+    height:50px;
     border-radius: 100%;
     position: absolute;
-    bottom:35px;
-    left: calc(50vw - 30px);
+    bottom:33px;
+    left: calc(50vw - 25px);
     background-color: rgba(188, 139, 201, 0.651);
     display: flex;
     align-items: center;
@@ -222,6 +222,7 @@ padding-top: 10px;
     color: rgb(98, 0, 255);
     font-size: 55px;
     line-height:80%;
+    padding: 0px 2px 6px 3px;
 }
 
 body{
@@ -340,3 +341,13 @@ body{
             align-items: center;
              height:30px;
            }
+
+.primaryScreenSlideOutMenuShade{
+    height:100vh;
+    width: 50vw;
+    position: absolute;
+    right:0px;
+    top:0px;
+    background-color: rgba(129, 129, 129, 0.637);
+    visibility: hidden;
+}

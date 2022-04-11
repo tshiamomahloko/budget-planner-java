@@ -1,9 +1,12 @@
-import "../component-styles/budgetCreate.css";
+import "../component-styles/budgetCreateMain.css";
 import write from "../write.png";
 function App(props) {
   return (
     <div className="budgetCreateMain">
-      <div className="budgetCreateSignUpOnlyTitle">First up, let's create a budget</div>
+     <button onClick={() => props.FECresponse1()} className="budgetCreateBackButton">
+        {"< Back"}
+      </button>
+
     <div className ="budgetCreateBudgetCreationContainer">
       <div className ="budgetCreateBudgetNameInputIconSpace"><img src={write} className ="budgetCreateBudgetNameInputIcon"></img></div>
    <div className="budgetCreateBudgetStartInputTitle">Start Date</div>
