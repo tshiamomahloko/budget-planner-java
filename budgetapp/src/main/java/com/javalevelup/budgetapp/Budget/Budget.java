@@ -1,9 +1,13 @@
 package com.javalevelup.budgetapp.Budget;
 
+import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import lombok.*;
-import org.hibernate.annotations.Check;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @ToString
@@ -12,11 +16,8 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@Entity
-@Table
-@Check(
-        constraints = "startDate < endDate"
-)
+@Entity(name="Budget")
+@Table(name="budget")
 public class Budget {
     @Id
     @SequenceGenerator(
@@ -25,22 +26,72 @@ public class Budget {
             allocationSize = 1
     )
     @GeneratedValue(
-            generator = "student_sequence",
+            generator = "budget_sequence",
             strategy = GenerationType.SEQUENCE
     )
-    private Long budgetID;
+    @Column(name="budget_id")
+    private Long id;
 
-    @Column(name="startDate")
+    @NotBlank
+    @NotNull
+    @Column(
+            name="budget_name",
+            nullable = false
+    )
+    private String name;
+
+    @NotNull
+    @Column(
+            name="start_date",
+            columnDefinition="DATE",
+            nullable = false
+    )
     private Date startDate;
 
-    @Column(name="endDate")
+    @NotNull
+    @Column(
+            name="end_date",
+            columnDefinition="DATE",
+            nullable = false
+    )
     private Date endDate;
 
-    //todo: many to one transactions reference bridging table
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+    )
+    @JoinTable(
+            name="budget_cash_flow",
+            joinColumns = @JoinColumn(
+                    name="budget_id",
+                    foreignKey = @ForeignKey(
+                            name = "budget_cash_flow_budget_id_fk"
+                    )
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name="cash_flow_id",
+                    foreignKey = @ForeignKey(
+                            name = "budget_cash_flow_cash_flow_id_fk"
+                    )
+            )
+    )
+    private List<CashFlow> cashFlows = new ArrayList<>();
 
-//    @ManyToMany(
-//
-//    )
-//    private List<Transaction> transactions = new ArrayList<>();
+    public Budget(String name, Date startDate, Date endDate) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public void addCashFlowToBudget(CashFlow cf){
+        if(!this.cashFlows.contains(cf)){
+            this.cashFlows.add(cf);
+            cf.getBudgets().add(this);
+        }
+    }
+
+    public void removeCashFlowFromBudget(CashFlow cf) {
+        this.cashFlows.remove(cf);
+        cf.getBudgets().remove(this);
+    }
 
 }
