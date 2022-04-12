@@ -16,6 +16,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+
 @Entity(name="Budget")
 @Table(name="budget")
 public class Budget {
@@ -36,7 +37,8 @@ public class Budget {
     @NotNull
     @Column(
             name="budget_name",
-            nullable = false
+            nullable = false,
+            columnDefinition = "TEXT"
     )
     private String name;
 
