@@ -33,6 +33,10 @@ public class CashFlow {
     @ManyToMany(
             mappedBy = "cashFlows"
     )
-    private List<Budget> budgets = new ArrayList<>();
+private List<Budget> budgets = new ArrayList<>();
+
+public List<Budget> getBudgets() {
+  return budgets;
+}
 
 }

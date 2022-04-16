@@ -1,4 +1,7 @@
 package com.javalevelup.budgetapp.CashFlow;
 
-public interface CashFlowRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CashFlowRepository  extends JpaRepository<CashFlow, Long>{
+
 }
