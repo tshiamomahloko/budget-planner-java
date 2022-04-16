@@ -1,10 +1,10 @@
-package com.javalevelup.budgetapp;
+package com.javalevelup.budgetApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BudgetappApplicationTests {
+class BudgetAppApplicationTests {
 
 	@Test
 	void contextLoads() {
