@@ -1,16 +1,13 @@
 package com.javalevelup.budgetapp.CashFlow;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import lombok.AllArgsConstructor;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(path="api/v1/cashFlows")
+@RequestMapping(path="api/v1/cashflows")
 @AllArgsConstructor
 public class CashFlowController {
     private CashFlowService cashFlowService;
@@ -19,19 +16,21 @@ public class CashFlowController {
     public List<CashFlow> getAllCashFlows(){
         return cashFlowService.getAllCashFlows();
     }
-    @RequestMapping(path="/cashFlows/{id}")
-    public CashFlow getCashFlowById(Long id){
+    @GetMapping(value="/{id}")
+    public Optional<CashFlow> getCashFlowById(Long id){
         return cashFlowService.getCashFlowById(id);
     }
-    @RequestMapping(method=RequestMethod.POST, value = "/cashFlows/{cashflowId}")
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public boolean addCashFlow(@RequestBody CashFlow cashFlow){
         return cashFlowService.addCashFlow(cashFlow);
     }
-    @RequestMapping(method=RequestMethod.DELETE, value = "/cashFlows/{cashflowId}")
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public boolean deleteCashFlow(@PathVariable Long id){
         return cashFlowService.removeCashFlow(id);
     }
-    @RequestMapping(method=RequestMethod.GET, value = "/cashFlows/count")
+    @GetMapping(value = "/count")
     public Long getCount(){
         return cashFlowService.getCount();
     }

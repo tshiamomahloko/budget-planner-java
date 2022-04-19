@@ -1,9 +1,17 @@
 package com.javalevelup.budgetapp.CashFlow;
 
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@AllArgsConstructor
+@Service
 public class CashFlowService  {
+    @Autowired
     private CashFlowRepository cashFlowRepository;
 
     public List<CashFlow> getAllCashFlows(){
@@ -13,8 +21,8 @@ public class CashFlowService  {
        return cashFlows;
     }
 
-    public CashFlow getCashFlowById(Long id){
-        return cashFlowRepository.getById(id);
+    public Optional<CashFlow> getCashFlowById(Long id){
+        return  cashFlowRepository.findById(id);
     }
     public boolean addCashFlow(CashFlow cashFlow){
         boolean isAdded = false;
