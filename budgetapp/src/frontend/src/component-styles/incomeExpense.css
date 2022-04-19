@@ -1,0 +1,211 @@
+.incExpCategoryContainer {
+  width: calc(90vw - 20px);
+  position: absolute;
+  left: 5vw;
+  top: 150px;
+  background-color: rgb(255, 255, 255);
+  height: calc(100vh - 400px);
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+  border-radius: 15px;
+  padding: 10px 10px 10px 10px;
+}
+
+.incExpCategoryBox {
+  width: calc(calc(90vw - 44px) / 4);
+  height: 90px;
+  float: left;
+  margin: 3px 3px 3px 3px;
+  border-radius: 11px;
+  border: none;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+    color: rgb(0, 0, 0);
+        font-weight: 600;
+        font-size: 13px;
+        background-color: rgba(251, 137, 107, 255);
+}
+
+.incExpCategoryBoxI {
+  width: calc(calc(90vw - 44px) / 4);
+  height: 90px;
+  float: left;
+  margin: 3px 3px 3px 3px;
+  border-radius: 11px;
+  border: none;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+    color: rgb(0, 0, 0);
+        font-weight: 600;
+        font-size: 13px;
+        background-color: rgb(80, 70, 187);
+}
+
+.IEMain {
+  background-color: var(--offwhite);
+}
+
+
+.incomeSelectorI{
+width:30vw;
+left:20vw;
+position: absolute;
+top:75px;
+border:none;
+    height:40px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-weight: 600;
+}
+
+
+.incomeSelectorA{
+  width:30vw;
+  left:20vw;
+  position: absolute;
+  top:75px;
+  border:none;
+      height:40px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      font-weight: 600;
+      color:white;
+      background-color:rgb(80, 70, 187);
+  }
+
+  .expenseSelectorI{
+   
+    font-weight: 600;
+    width:30vw;
+    right:20vw;
+    position: absolute;
+    top:75px;
+    border:none;
+    height:40px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+  
+.expenseSelectorA{
+    color:white;
+    background-color:rgba(251, 137, 107, 255);
+    font-weight: 600;
+    width:30vw;
+    right:20vw;
+    position: absolute;
+    top:75px;
+    border:none;
+    height:40px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.incExpCategoryBoxLabel{
+background-color: rgb(223, 223, 223);
+border-bottom-left-radius: 9px;
+border-bottom-right-radius: 9px;
+height:20px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.incExpCategoryBoxIconSpace{
+    height:62px;
+   display: flex;
+   align-items: center;
+   justify-content: center; 
+}
+
+.incExpCategoryBoxIcon{
+    height:40px;
+}
+
+.incExpInput{
+  position: absolute;
+  width:calc(84vw - 32px);
+  left:8vw;
+  bottom:100px;
+  padding: 18px 15px 20px 15px;
+  border-radius: 11px;
+  border:none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+  rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.incExpConfirmButton{
+  position: absolute;
+  width:calc(84vw);
+  left:8vw;
+  bottom:35px;
+  border-radius: 11px;
+  border:none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+  rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background-color: rgba(188, 139, 201, 0.651);
+  color: rgb(98, 0, 255);
+  height:50px;
+  font-weight: 600;
+}
+
+.incExpSelection{
+  position: absolute;
+  width:calc(84vw - 2px);
+  left:8vw;
+  bottom:154px;
+  border-radius: 11px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border:none;
+  height:53px;
+  background-color:rgba(251, 137, 107, 255);
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
+.incExpSelectionI{
+  position: absolute;
+  width:calc(84vw - 2px);
+  left:8vw;
+  bottom:154px;
+  border-radius: 11px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border:none;
+  height:53px;
+  background-color:rgb(80, 70, 187);
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.incExpInput:focus{
+  outline:none;
+  border:none;
+}
+
+.ieSignUpHeader{
+  position: absolute;
+      width:70%;
+      left:15%;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      top:100px;
+}

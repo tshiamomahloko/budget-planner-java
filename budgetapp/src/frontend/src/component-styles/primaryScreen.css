@@ -1,0 +1,354 @@
+.primaryScreenIncomeExpenseVisualizer{
+
+    background-color: green;
+    width:90%;
+    height: 150px;
+    position: absolute;
+    left: 5%;
+    top: 80px;   
+
+    border-radius: 15px;
+
+}
+
+.primaryScreenIncomeVisualizer{
+    background-color: rgb(80, 70, 187);
+    height:100%;
+    width:calc(50% - 50px);
+    float:left;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    color:white;
+}
+
+.primaryScreenExpenseVisualizer{
+    background-color: rgba(251, 137, 107, 255);
+    height:100%;
+    width: calc(50% + 50px);
+    float:left;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color:white;
+}
+
+.primaryScreenIncomeExpenseVisualizerGraphic{
+    height:100%;
+    float:left;
+    margin-left: -1px;
+    width:100px;
+}
+
+.primaryScreenExpenseDisplay{
+font-weight: 600;
+font-size: 15px;
+line-height: 150%;
+position: absolute;
+right: 30px;
+    top:48px;
+    text-align: right;
+}
+
+.primaryScreenExpenseTitle{
+    font-weight: 300;
+    font-size: 17px;
+    position: absolute;
+    right: 30px;
+    top:25px;
+}
+
+.primaryScreenIncomeDisplay{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 150%;
+    position: absolute;
+    left: 30px;
+        top:48px;
+        text-align: right;
+    }
+    
+    .primaryScreenIncomeTitle{
+        font-weight: 600;
+        font-size: 18px;
+        position: absolute;
+        left: 30px;
+        top:25px;
+    }
+
+
+    .primaryScreenMenuBar{
+        background-color: red;
+    }
+    
+    .primaryScreenBurgerMenuButton{
+        position: absolute;
+        left:15px;
+        top:15px;
+        height:45px;
+        width: 45px;
+        background-color: var(--offwhite);
+        border:none;
+
+    }
+
+    .primaryScreenBurgerMenuIcon{
+        height:30px;
+    }
+
+    .primaryScreenBudgetDropdownContainer{
+      font-weight: 600;
+        height: 45px;
+        width: calc(100vw - 120px);
+        top: 14px;
+        position: absolute;
+        left: 60px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--offwhite);
+        border:none;
+    }
+
+    .primaryScreenAddBudget{
+position: absolute;
+right:15px;
+top:12px;
+height:45px;
+width: 45px;
+font-size: 38px;
+font-weight: 400;
+background-color: var(--offwhite);
+border:none;
+    }
+
+.primaryScreenDaysRemainingContainer{
+position: absolute;
+left: 5%;
+width: 43%;
+height:90px;
+background-color: rgb(255, 255, 255);
+top:245px;
+border-radius: 14px;
+box-shadow: rgba(50, 50, 93, 0.11) 0px 50px 100px -20px, rgba(0, 0, 0, 0.123) 0px 30px 60px -30px, rgba(10, 37, 64, 0.034) 0px -2px 6px 0px inset;
+}
+.primaryScreenDaysRemainingCounter{
+font-size:25px;
+font-weight: 600;
+text-align: left;
+padding-left: 20px;
+padding-top: 10px;
+}
+.primaryScreenDaysRemainingSubText{
+    font-size:18px;
+   
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 6px;
+}
+  
+.primaryScreenAmountRemainingContainer{
+    position: absolute;
+    right: 5%;
+    width: 43%;
+    height:90px;
+    background-color: rgb(255, 255, 255);
+    top:245px;
+    border-radius: 14px;
+    box-shadow: rgba(50, 50, 93, 0.11) 0px 50px 100px -20px, rgba(0, 0, 0, 0.123) 0px 30px 60px -30px, rgba(10, 37, 64, 0.068) 0px -2px 6px 0px inset;
+    }
+    .primaryScreenAmountRemainingCounter{
+        font-size:25px;
+        font-weight: 600;
+        text-align: right;
+        padding-right: 20px;
+        padding-top: 10px;
+    }
+    .primaryScreenAmountRemainingSubText{
+        font-size:18px;
+   
+        text-align: right;
+        padding-right: 20px;
+        padding-top: 6px;
+    }
+      
+.primaryScreenTransactionListContainer{
+    height: calc(100vh - 465px);
+    width:90%;
+    box-shadow: rgba(50, 50, 93, 0.11) 0px 50px 100px -20px, rgba(0, 0, 0, 0.164) 0px 30px 60px -30px, rgba(10, 37, 64, 0.075) 0px -2px 6px 0px inset;
+    position: absolute;
+    bottom:60px;
+    left:5%;
+    border-radius: 15px;
+    overflow: auto;
+    padding-bottom: 50px;
+    background-color: rgb(255,255,255);
+}
+
+.primaryScreenTransactionListContainer::-webkit-scrollbar {
+    display: none;
+  }
+
+.primaryScreenTransactionListTitleBar{
+    padding-top: 15px;
+    height:35px;
+    border-bottom-color:rgba(128, 128, 128, 0.384);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+.primaryScreenTransactionListTitle{
+    
+    height:35px;
+    width:100px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    padding-left: 15px;
+}
+
+.primaryScreenAddIncomeExpense{
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius: 100%;
+    position: absolute;
+    bottom:33px;
+    left: calc(50vw - 30px);
+    background-color: rgba(188, 139, 201, 0.651);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(98, 0, 255);
+    font-size: 55px;
+    line-height:80%;
+    padding: 0px 2px 6px 3px;
+}
+
+body{
+    background-color: var(--offwhite);
+}
+
+.primaryScreenSlideOutMenu{
+    background-color: var(--offwhite);
+    position: absolute;
+    height: 100vh;
+    width: 50vw;
+    left:0px;
+    top:0px;
+    visibility: hidden;
+}
+
+.primaryScreenSlideOutMenuIconSpace{
+    background-color: rgb(165, 202, 228);
+    width:90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:110px;
+    left: calc(50% - 45px);
+    border-radius: 100%;
+}
+
+.primaryScreenSlideOutMenuIcon{
+    height:80px;
+}
+
+.primaryScreenSlideOutMenuTitle{
+    background-color: rgb(165, 202, 228);
+    width:90px;
+    position: absolute;
+    top:215px;
+    left: calc(50% - 45px);
+    text-align: center;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.primaryScreenSlideOutMenuSignOut{
+    color: rgb(98, 0, 255);
+    font-weight: 600;
+    font-size: 13px;
+    position: absolute;
+    top: 340px;
+    left: calc(25vw - 80px);
+    background-color: rgba(188, 139, 201, 0.651);
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      width:160px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+      height:30px;
+}
+
+.primaryScreenSlideOutMenuMinimize{
+    color: rgb(98, 0, 255);
+    font-weight: 600;
+    font-size: 13px;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    background-color: rgba(188, 139, 201, 0.651);
+    border-radius: 5px;
+    padding: 6px 5px 5px 5px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+
+
+.primaryScreenSlideOutMenuEditBudgets{
+ color: rgb(98, 0, 255);
+    font-weight: 600;
+    font-size: 13px;
+    position: absolute;
+    top: 255px;
+    left: calc(25vw - 80px);
+    background-color: rgba(188, 139, 201, 0.651);
+    border-radius: 5px;
+   
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      width:160px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+      height:30px;
+    }
+
+    .primaryScreenSlideOutMenuExportBudgets{
+        color: rgb(98, 0, 255);
+           font-weight: 600;
+           font-size: 13px;
+           position: absolute;
+           top: 298px;
+           left: calc(25vw - 80px);
+           background-color: rgba(188, 139, 201, 0.651);
+           border-radius: 5px;
+           
+           border: none;
+           box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+             rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+             width:160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+             height:30px;
+           }
+
+.primaryScreenSlideOutMenuShade{
+    height:100vh;
+    width: 50vw;
+    position: absolute;
+    right:0px;
+    top:0px;
+    background-color: rgba(129, 129, 129, 0.637);
+    visibility: hidden;
+}
