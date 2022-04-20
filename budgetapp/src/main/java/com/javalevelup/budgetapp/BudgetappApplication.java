@@ -1,8 +1,9 @@
 package com.javalevelup.budgetapp;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import com.javalevelup.budgetapp.Budget.BudgetRepository;
+import com.javalevelup.budgetapp.Budget.BudgetService;
+import com.javalevelup.budgetapp.Customer.Customer;
+import com.javalevelup.budgetapp.Customer.UserRepository;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

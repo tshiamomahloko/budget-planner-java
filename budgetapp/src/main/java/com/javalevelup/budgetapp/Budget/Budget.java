@@ -1,19 +1,23 @@
 package com.javalevelup.budgetapp.Budget;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import com.javalevelup.budgetapp.User.Customer;
+
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 
 @ToString
 @Getter
@@ -85,11 +89,22 @@ public class Budget {
     @ToString.Exclude
     private List<CashFlow> cashFlows = new ArrayList<>();
 
-    public Budget(String name, LocalDate startDate, LocalDate endDate, Customer user) {
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(
+            name = "customer_id",
+            foreignKey = @ForeignKey(
+                    name = "budget_customer_id_fk"
+            )
+    )
+    private Customer customer;
+
+    public Budget(String name, Date startDate, Date endDate, Customer customer){
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.user = user;
+        this.customer = customer;
     }
 
     public void addCashFlowToBudget(CashFlow cf){
@@ -104,6 +119,7 @@ public class Budget {
         cf.getBudgets().remove(this);
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,3 +133,4 @@ public class Budget {
         return getClass().hashCode();
     }
 }
+
