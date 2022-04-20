@@ -61,7 +61,7 @@ public class CustomerController {
         userService.updateUser(username, user);
     }
 
-    @GetMapping(path = "update_token")
+        @GetMapping(path = "update_token")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
 

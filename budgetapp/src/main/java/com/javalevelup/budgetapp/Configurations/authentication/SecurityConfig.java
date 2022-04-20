@@ -16,36 +16,37 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration @EnableWebSecurity @RequiredArgsConstructor
+//@Configuration @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+//    private final UserDetailsService userDetailsService;
+//    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+//
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+//    }
+//
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManagerBean());
+//
+//        authenticationFilter.setFilterProcessesUrl("/api/v1/users/auth/login");
+//        http.csrf().disable();
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/users/auth/**").permitAll();
+//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/users/update_token").permitAll();
+//        http.authorizeRequests().antMatchers("/api/v1/docs/**", "/v3/api-docs/**").permitAll();
+//        http.addFilter(authenticationFilter);
+//        http.authorizeRequests().anyRequest().authenticated();
+//        http.addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+//    }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManagerBean());
-
-        authenticationFilter.setFilterProcessesUrl("/api/v1/users/auth/login");
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/users/auth/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/users/update_token").permitAll();
-        http.authorizeRequests().antMatchers("/api/v1/docs/**", "/v3/api-docs/**").permitAll();
-        http.addFilter(authenticationFilter);
-        http.authorizeRequests().anyRequest().authenticated();
-        http.addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
-
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+//    @Bean
+//    @Override
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return super.authenticationManagerBean();
+//    }
 }
 
