@@ -3,6 +3,7 @@ package com.javalevelup.budgetapp.Budget;
 import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import com.javalevelup.budgetapp.Customer.Customer;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
+@Slf4j
 public class BudgetService {
     @Autowired
     private final BudgetRepository budgetRepository;
@@ -44,6 +46,7 @@ public class BudgetService {
 
     public void addCashflowToBudget(Long id, CashFlow cashFlow){
         Budget budget = getBudgetByID(id);
+        log.info(budget.toString());
         budget.addCashFlowToBudget(cashFlow);
         budgetRepository.save(budget);
     }

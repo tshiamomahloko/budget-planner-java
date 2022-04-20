@@ -47,6 +47,7 @@ public class CustomerController {
 
     @PostMapping(path = "auth/signup")
     public void addUser(@RequestBody Customer user) {
+        log.info(user.toString());
         userService.addUser(user);
     }
 

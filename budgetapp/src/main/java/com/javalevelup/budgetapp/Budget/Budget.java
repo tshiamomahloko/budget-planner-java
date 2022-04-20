@@ -1,9 +1,7 @@
 package com.javalevelup.budgetapp.Budget;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import com.javalevelup.budgetapp.Customer.Customer;
 
@@ -26,6 +24,10 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Entity(name="Budget")
 @Table(name="Budget")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Budget {
     @Id
     @SequenceGenerator(
@@ -64,7 +66,6 @@ public class Budget {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate endDate;
 
-    @JsonManagedReference
     @ManyToMany(
             cascade = {CascadeType.ALL}
     )
@@ -87,7 +88,6 @@ public class Budget {
     private List<CashFlow> cashFlows = new ArrayList<>();
 
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(
             name = "customer_id",
