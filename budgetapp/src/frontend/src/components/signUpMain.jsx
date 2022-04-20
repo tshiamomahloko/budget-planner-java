@@ -2,8 +2,22 @@ import "../component-styles/signUpMain.css";
 import userico from "../userico.png";
 import emailico from "../emailico.png";
 import passico from "../passico.png";
+import axios from 'axios'
 
 function App(props) {
+  let createPost = ()=>{
+    const data = { username: 'tshiamo', password: 'mahlokohum', email: 'tshiamo@gmail.com'}
+    let url = 'http://localhost:8080/api/v1/users/auth/signup'
+    const options = {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      data: data,
+      url
+    }
+    axios(options).then((response) => {
+      console.log(response)
+    })
+  }
   return (
     <div className="signUpMain">
       <div className="signUpContainer">
@@ -15,7 +29,11 @@ function App(props) {
         </button>
         <div className="signUpMainButtonSeperator">- or -</div>
         <button
-          onClick={() => props.FECresponse3()}
+          onClick={() =>{
+            createPost()
+            props.FECresponse3() 
+            
+          } }
           className="signUpMainSignUpButton"
         >
           Sign Up
