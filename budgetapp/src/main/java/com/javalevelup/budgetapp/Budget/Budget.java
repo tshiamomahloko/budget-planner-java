@@ -1,13 +1,14 @@
 package com.javalevelup.budgetapp.Budget;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.javalevelup.budgetapp.CashFlow.CashFlow;
+import com.javalevelup.budgetapp.Customer.Customer;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.sql.Date;
 
 @ToString
@@ -78,10 +79,21 @@ public class Budget {
     )
     private List<CashFlow> cashFlows = new ArrayList<>();
 
-    public Budget(String name, Date startDate, Date endDate) {
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(
+            name = "customer_id",
+            foreignKey = @ForeignKey(
+                    name = "budget_customer_id_fk"
+            )
+    )
+    private Customer customer;
+
+    public Budget(String name, Date startDate, Date endDate, Customer customer){
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.customer = customer;
     }
 
     public void addCashFlowToBudget(CashFlow cf){
