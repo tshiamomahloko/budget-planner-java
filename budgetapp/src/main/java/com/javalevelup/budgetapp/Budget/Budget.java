@@ -6,6 +6,7 @@ import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import com.javalevelup.budgetapp.Customer.Customer;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ import java.util.Objects;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id"
 )
+@Slf4j
 public class Budget {
     @Id
     @SequenceGenerator(
@@ -114,8 +116,17 @@ public class Budget {
     }
 
     public void removeCashFlowFromBudget(CashFlow cf) {
-        this.cashFlows.remove(cf);
+        log.info("BUDGETS");
+        log.info(cf.getBudgets().toString());
         cf.getBudgets().remove(this);
+        log.info("AFTER");
+        log.info(cf.getBudgets().toString());
+        log.info("CUSTOMER");
+        log.info(cf.getCustomer().toString());
+        cf.setCustomer(null);
+        log.info("AFTER");
+        log.info(cf.getCustomer().toString());
+        this.cashFlows.remove(cf);
     }
 
 

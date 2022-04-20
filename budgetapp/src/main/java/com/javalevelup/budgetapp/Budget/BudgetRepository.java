@@ -9,6 +9,6 @@ import java.util.List;
 public interface BudgetRepository
         extends JpaRepository<Budget, Long>{
 
-    List<Budget> findAllByCustomerId(Long customerId);
+    List<Budget> findAllByCustomerUsername(String username);
 
 }

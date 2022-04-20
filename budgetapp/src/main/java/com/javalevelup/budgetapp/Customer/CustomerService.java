@@ -53,7 +53,6 @@ public class CustomerService implements UserDetailsService {
         Customer user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         String.format("User with username %s does not exist", username)));
-        // TODO: updateUser logic
         if (updatedUser.getUsername() != null && !updatedUser.getUsername().isEmpty()) {
             if (!Objects.equals(updatedUser.getUsername(), user.getUsername())) {
                 user.setUsername(updatedUser.getUsername());
