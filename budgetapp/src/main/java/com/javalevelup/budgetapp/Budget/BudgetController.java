@@ -30,17 +30,12 @@ public class BudgetController {
 //        return budgetService.getBudget(budgetID);
 //    }
 //
-////    @PostMapping
-////    @ResponseStatus(HttpStatus.CREATED)
-////    public void addBudget(@RequestBody String name, Date startDate, Date endDate, User user){
-////        budgetService.addBudget(name, (java.sql.Date) startDate, (java.sql.Date) endDate, user);
-////    }
 //
-//    @PostMapping(value = "/{budgetID}")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void replicateBudget(@RequestBody Long budgetID){
-//        budgetService.replicateBudget(budgetID);
-//    }
+    @PostMapping(value = "/{budgetID}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void replicateBudget(@PathVariable("budgetID") Long budgetID){
+        budgetService.replicateBudget(budgetID);
+    }
 //
 //    @PatchMapping
 //    @ResponseStatus(HttpStatus.OK)
