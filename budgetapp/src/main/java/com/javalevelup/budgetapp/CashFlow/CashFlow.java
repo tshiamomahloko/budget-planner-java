@@ -2,6 +2,7 @@ package com.javalevelup.budgetapp.CashFlow;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.javalevelup.budgetapp.Budget.Budget;
 import com.javalevelup.budgetapp.Customer.Customer;
@@ -59,6 +60,7 @@ public class CashFlow {
     private List<Budget> budgets = new ArrayList<>();
 
     @ManyToOne
+    @JsonIgnore
     private Customer customer;
 
     public CashFlow(String name, Double amount) {
