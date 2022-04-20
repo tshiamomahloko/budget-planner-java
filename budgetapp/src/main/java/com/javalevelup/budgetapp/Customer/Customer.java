@@ -1,4 +1,4 @@
-package com.javalevelup.budgetapp.User;
+package com.javalevelup.budgetapp.Customer;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.javalevelup.budgetapp.Budget.Budget;
@@ -40,7 +40,7 @@ public class Customer implements Serializable {
     private String password;
 
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     @ToString.Exclude
     private Collection<Budget> budgets = new ArrayList<>();
 

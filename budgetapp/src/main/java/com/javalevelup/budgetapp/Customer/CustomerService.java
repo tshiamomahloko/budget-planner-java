@@ -1,4 +1,4 @@
-package com.javalevelup.budgetapp.User;
+package com.javalevelup.budgetapp.Customer;
 
 import com.javalevelup.budgetapp.CashFlow.CashFlowRepository;
 import com.javalevelup.budgetapp.Budget.BudgetRepository;
