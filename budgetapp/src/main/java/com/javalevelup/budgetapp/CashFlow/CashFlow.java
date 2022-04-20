@@ -2,6 +2,7 @@ package com.javalevelup.budgetapp.CashFlow;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.javalevelup.budgetapp.Budget.Budget;
 import com.javalevelup.budgetapp.Customer.Customer;
@@ -45,6 +46,7 @@ public class CashFlow {
             columnDefinition = "TEXT"
     )
     private String name;
+
     @Column(
             name="cashflow_amount",
             nullable = false,
@@ -52,11 +54,15 @@ public class CashFlow {
     )
     private Double amount;
 
+    @JsonIgnore
     @ManyToMany(
             mappedBy = "cashFlows"
     )
-    @ToString.Exclude
     private List<Budget> budgets = new ArrayList<>();
+
+    @ManyToOne
+    @JsonIgnore
+    private Customer customer;
 
     public CashFlow(String name, Double amount) {
         this.name = name;
