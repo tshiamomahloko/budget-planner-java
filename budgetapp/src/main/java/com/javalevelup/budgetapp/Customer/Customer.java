@@ -58,6 +58,7 @@ public class Customer implements Serializable {
     public void addBudgetToCustomer(Budget budget) {
         if (!this.budgets.contains(budget)) {
             this.budgets.add(budget);
+            budget.setCustomer(this);
         }
     }
 

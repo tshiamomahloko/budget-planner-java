@@ -6,6 +6,7 @@ import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import com.javalevelup.budgetapp.Customer.Customer;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 @ToString
@@ -28,6 +30,7 @@ import java.util.Objects;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id"
 )
+@Slf4j
 public class Budget {
     @Id
     @SequenceGenerator(
@@ -105,6 +108,22 @@ public class Budget {
         this.customer = customer;
     }
 
+    public Double getIncomeTotal() {
+        AtomicReference<Double> incomeTotal = new AtomicReference<>(0.0);
+        getCashFlows().stream()
+                .filter((b) -> b.getAmount() > 0)
+                .forEach(n -> incomeTotal.updateAndGet(v -> v + n.getAmount()));
+        return incomeTotal.get();
+    }
+
+    public Double getExpenseTotal() {
+        AtomicReference<Double> expenseTotal = new AtomicReference<>(0.0);
+        getCashFlows().stream()
+                .filter((b) -> b.getAmount() < 0)
+                .forEach(n -> expenseTotal.updateAndGet(v -> v + n.getAmount()));
+        return expenseTotal.get();
+    }
+
     public void addCashFlowToBudget(CashFlow cf){
         if(!this.cashFlows.contains(cf)){
             this.cashFlows.add(cf);
@@ -114,8 +133,9 @@ public class Budget {
     }
 
     public void removeCashFlowFromBudget(CashFlow cf) {
-        this.cashFlows.remove(cf);
         cf.getBudgets().remove(this);
+        cf.setCustomer(null);
+        this.cashFlows.remove(cf);
     }
 
 
