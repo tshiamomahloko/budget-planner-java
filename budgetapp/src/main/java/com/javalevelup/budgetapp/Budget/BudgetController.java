@@ -18,7 +18,7 @@ import java.util.Optional;
 public class BudgetController {
     private final BudgetService budgetService;
 
-    @GetMapping(path = "/{customerId}")
+    @GetMapping(path = "customer/{customerId}")
     public List<Budget> getCustomerBudgets(@PathVariable("customerId") Long customerId){
         return budgetService.getCustomerBudgets(customerId);
     }
@@ -34,12 +34,12 @@ public class BudgetController {
         budgetService.addCashflowToBudget(id, cashFlow);
     }
 
-//    @GetMapping(value="/{budgetID}")
-//    public Budget getOneBudget(Long budgetID){
-//        return budgetService.getBudget(budgetID);
-//    }
-//
-//
+    @GetMapping(value="/{budgetID}")
+    public Budget getOneBudget(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetByID(budgetID);
+    }
+
+
     @PostMapping(value = "/{budgetID}")
     @ResponseStatus(HttpStatus.CREATED)
     public void replicateBudget(@PathVariable("budgetID") Long budgetID){
