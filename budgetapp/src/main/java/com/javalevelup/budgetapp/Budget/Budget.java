@@ -1,25 +1,30 @@
 package com.javalevelup.budgetapp.Budget;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.javalevelup.budgetapp.CashFlow.CashFlow;
-import com.javalevelup.budgetapp.Customer.Customer;
-import lombok.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.javalevelup.budgetapp.CashFlow.CashFlow;
+import com.javalevelup.budgetapp.User.Customer;
+
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.sql.Date;
+import java.util.Objects;
+
 
 @ToString
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-
+@RequiredArgsConstructor
 @Entity(name="Budget")
-@Table(name="budget")
+@Table(name="Budget")
 public class Budget {
     @Id
     @SequenceGenerator(
@@ -37,7 +42,6 @@ public class Budget {
     @NotBlank
     @NotNull
     @Column(
-            name="budget_name",
             nullable = false,
             columnDefinition = "TEXT"
     )
@@ -45,19 +49,24 @@ public class Budget {
 
     @NotNull
     @Column(
-            name="start_date",
             columnDefinition="DATE",
             nullable = false
     )
-    private Date startDate;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate startDate;
 
     @NotNull
     @Column(
-            name="end_date",
             columnDefinition="DATE",
             nullable = false
     )
-    private Date endDate;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate endDate;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Customer user;
 
     @ManyToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
@@ -77,7 +86,9 @@ public class Budget {
                     )
             )
     )
+    @ToString.Exclude
     private List<CashFlow> cashFlows = new ArrayList<>();
+
 
     @JsonBackReference
     @ManyToOne
@@ -108,4 +119,18 @@ public class Budget {
         cf.getBudgets().remove(this);
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Budget budget = (Budget) o;
+        return id != null && Objects.equals(id, budget.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
+
