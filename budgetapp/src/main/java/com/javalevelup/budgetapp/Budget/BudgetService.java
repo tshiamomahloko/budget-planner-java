@@ -26,11 +26,11 @@ public class BudgetService {
         budgetRepository.save(new Budget(budget.getName(), budget.getStartDate(), budget.getEndDate(), budget.getCustomer()));
     }
 
-    public void modifyBudget(Long budgetID, String budgetName, LocalDate startDate, LocalDate endDate){
+    public void modifyBudget(Long budgetID, String budgetName, String startDate, String endDate){
         Budget modifiedBudget = budgetRepository.findById(budgetID).get();
         modifiedBudget.setName(budgetName);
-        modifiedBudget.setStartDate(startDate);
-        modifiedBudget.setEndDate(endDate);
+        modifiedBudget.setStartDate(LocalDate.parse(startDate));
+        modifiedBudget.setEndDate(LocalDate.parse(endDate));
         budgetRepository.save(modifiedBudget);
     }
 
