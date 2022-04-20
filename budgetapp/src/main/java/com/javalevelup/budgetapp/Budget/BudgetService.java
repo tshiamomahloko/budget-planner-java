@@ -2,10 +2,12 @@ package com.javalevelup.budgetapp.Budget;
 
 import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import com.javalevelup.budgetapp.Customer.Customer;
+import com.javalevelup.budgetapp.Customer.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,12 +21,14 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 @Service
 @Slf4j
+@Transactional
 public class BudgetService {
-    @Autowired
-    private final BudgetRepository budgetRepository;
 
-    public List<Budget> getCustomerBudgets(Long customerID){
-        return budgetRepository.findAllByCustomerId(customerID);
+    private final BudgetRepository budgetRepository;
+    private final CustomerRepository customerRepository;
+
+    public List<Budget> getCustomerBudgets(String username){
+        return budgetRepository.findAllByCustomerUsername(username);
     }
 
     public void replicateBudget(Long budgetID){
@@ -44,11 +48,17 @@ public class BudgetService {
         return budgetRepository.findById(budgetID).get();
     }
 
-    public void addBudget(Budget budget){
+
+    public void addBudget(String username, Budget budget){
         if(budget.getStartDate().isAfter(budget.getEndDate())){
             throw new IllegalStateException("The start date must be before end date.");
         }
-        budgetRepository.save(budget);
+  
+        Customer customer = customerRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalStateException(
+                        String.format("User with username %s does not exist", username)));
+        Budget savedBudget = budgetRepository.save(budget);
+        customer.addBudgetToCustomer(savedBudget);
     }
 
     public void addCashflowToBudget(Long id, CashFlow cashFlow){

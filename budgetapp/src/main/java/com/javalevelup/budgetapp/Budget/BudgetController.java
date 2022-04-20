@@ -13,15 +13,15 @@ import java.util.List;
 public class BudgetController {
     private final BudgetService budgetService;
 
-    @GetMapping(path = "customer/{customerId}")
-    public List<Budget> getCustomerBudgets(@PathVariable("customerId") Long customerId){
+    @GetMapping(path = "{username}/get-budgets")
+    public List<Budget> getCustomerBudgets(@PathVariable("username") String customerId){
         return budgetService.getCustomerBudgets(customerId);
     }
 
 
-    @PostMapping
-    public void addBudget(@RequestBody Budget budget) {
-        budgetService.addBudget(budget);
+    @PostMapping(path = "{username}/add-budget")
+    public void addBudget(@PathVariable("username") String username, @RequestBody Budget budget) {
+        budgetService.addBudget(username, budget);
     }
 
     @PostMapping(path = "/{id}/add-cash-flow")
