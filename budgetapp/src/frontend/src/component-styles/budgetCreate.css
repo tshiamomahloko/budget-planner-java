@@ -1,0 +1,163 @@
+.budgetCreateMain{
+  background-color: var(--offwhite);
+  height:100vh;
+  width:100vw;
+  }
+  
+  .budgetCreateBackButton{
+      color: rgb(98, 0, 255);
+      font-weight: 600;
+      font-size: 13px;
+      position: absolute;
+      top: 20px;
+      left: 10px;
+      background-color: rgba(188, 139, 201, 0.651);
+      border-radius: 5px;
+      padding: 6px 5px 5px 5px;
+      border: none;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      }
+  
+  
+  .budgetCreateBudgetCreationContainer{
+  background-color: rgb(255, 255, 255);
+  height:150px;
+  width:90%;
+  position: absolute;
+  left:5%;
+  top:70px;
+  border-radius: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+  rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+  
+  .budgetCreateBudgetCreationButton{
+    height:60px;
+    width:90%;
+    position: absolute;
+    left:5%;
+    top:240px;
+    border-radius: 13px;
+    color: rgb(98, 0, 255);
+    font-weight: 600;
+    font-size: 18px;
+    background-color: rgba(188, 139, 201, 0.651);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: none;
+    }
+  
+    .budgetCreateBudgetNameInput{
+      background-color: var(--offwhite);
+      width:calc(78% - 20px);
+      height:40px;
+      position: absolute;
+      left:17%;
+      top:15px;
+      color:gray;
+      border:none;
+      border-radius: 7px;
+      padding: 0px 10px 0px 10px;
+      font-size: 18px;
+      font-weight: 600;
+      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0px;
+    }
+    .budgetCreateBudgetStartInput{
+      background-color: var(--offwhite);
+      width:calc(45% - 30px);
+      height:35px;
+      position: absolute;
+      left:5%;
+      top:100px;
+      color:rgba(128, 128, 128, 0.568);
+      border:none;
+      border-radius: 7px;
+      padding: 0px 10px 0px 10px;
+      font-size: 15px;
+      font-weight: 600;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
+  
+    .budgetCreateBudgetEndInput{
+    
+      background-color: var(--offwhite);
+      width:calc(45% - 30px);
+      height:35px;
+      position: absolute;
+      right:5%;
+      top:100px;
+      color:rgba(128, 128, 128, 0.568);
+      border:none;
+      border-radius: 7px;
+      padding: 0px 10px 0px 10px;
+      font-size: 15px;
+      font-weight: 600;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
+
+    .budgetCreateBudgetNameInputIconSpace{
+      background-color: rgba(83, 125, 187, 0.144);
+      width:  40px;
+      height:40px;
+      position: absolute;
+      left:5%;
+      top:15px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom-right-radius: 0px;
+      border-top-right-radius: 0px;
+    }
+
+    .budgetCreateBudgetNameInputIcon{
+      height:30px;
+    }
+
+    .budgetCreateBudgetStartInputTitle{
+      background-color: rgba(83, 125, 187, 0.144);
+      width: calc(45% - 10px);
+      position: absolute;
+      left:5%;
+      top:68px;
+      height:32px;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color:rgba(128, 128, 128, 0.788);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .budgetCreateBudgetEndInputTitle{
+      background-color: rgba(83, 125, 187, 0.144);
+      width: calc(45% - 10px);
+      position: absolute;
+      right:5%;
+      top:68px;
+      height:32px;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color:rgba(128, 128, 128, 0.788);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .budgetCreateSignUpOnlyTitle{
+      position: absolute;
+      width:70%;
+      left:15%;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      top:30px;
+    }

@@ -1,0 +1,54 @@
+.ssBudgetItemMain{
+    height:50px;
+    border-bottom-width: 0px;
+    border-bottom-color: rgba(128, 128, 128, 0.315);
+    border-bottom-style: solid;
+    padding-right: 20px;
+    background-color: rgba(255, 255, 255, 0.911);
+}
+
+.budgetItemCategoryIconSpace{
+    background-color: rgba(240, 248, 255, 0.918);
+width:50px;
+height:50px;
+display:flex;
+align-items: center;
+justify-content: center;
+float:left;
+}
+
+.budgetItemCategoryIcon{
+width:35px;
+}
+
+.budgetItemTitle{
+width: calc(100% - 215px);
+float:left;
+height:100%;
+display: flex;
+align-items: center;
+padding-left: 15px;
+font-size: 18px;
+
+}
+
+.ssBudgetItemAmount{
+    background-color: rgba(255, 255, 255, 0.795);
+    display: flex;
+align-items: center;
+justify-content: center;
+
+height: 100%;
+width:180px;
+font-size: 12px;
+font-weight: 600d;
+margin-left: 120px;
+}
+
+.budgetItemSelectionButton{
+    height:20px;
+    width:20px;
+    border-radius: 100%;
+    border:none;
+    background-color: rgba(188, 139, 201, 0.651);
+}
