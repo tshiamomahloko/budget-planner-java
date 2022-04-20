@@ -13,7 +13,7 @@ import java.util.List;
 public class BudgetController {
     private final BudgetService budgetService;
 
-    @GetMapping(path = "/{customerId}")
+    @GetMapping(path = "customer/{customerId}")
     public List<Budget> getCustomerBudgets(@PathVariable("customerId") Long customerId){
         return budgetService.getCustomerBudgets(customerId);
     }
@@ -27,6 +27,22 @@ public class BudgetController {
     @PostMapping(path = "/{id}/add-cash-flow")
     public void addCashflowToBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow){
         budgetService.addCashflowToBudget(id, cashFlow);
+    }
+
+
+    @GetMapping(value="/{budgetID}")
+    public Budget getSingleBudgetById(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetByID(budgetID);
+    }
+
+    @GetMapping(path = "incomes/{budgetID}")
+    public List<CashFlow> getBudgetIncomes(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetIncomes(budgetID);
+    }
+
+    @GetMapping(path = "expenses/{budgetID}")
+    public List<CashFlow> getBudgetExpenses(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetExpenses(budgetID);
     }
 
     @PostMapping(value = "/{budgetID}")

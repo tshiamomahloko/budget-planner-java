@@ -52,13 +52,13 @@ public class BudgetService {
     }
 
 
-//    public List<CashFlow> getBudgetIncomes(Long budgetID){
-//        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getCashFlowAmount() > 0).toList();
-//    }
-//
-//    public List<CashFlow> getBudgetExpenses(Long budgetID){
-//        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getCashFlowAmount() < 0).toList();
-//    }
+    public List<CashFlow> getBudgetIncomes(Long budgetID){
+        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getAmount() > 0).toList();
+    }
+
+    public List<CashFlow> getBudgetExpenses(Long budgetID){
+        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getAmount() < 0).toList();
+    }
 
     public String displayBudget(Budget budget){
         String printedBudget = "";
