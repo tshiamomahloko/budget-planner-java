@@ -13,6 +13,9 @@ import IncomeCreate from "./incomeCreate.jsx";
 import ExpenseCreate from "./expenseCreate.jsx";
 
 function App() {
+
+  const [token, setToken] = useState("");
+  const [userID, setUserID] = useState(0);
   const [screen, setScreen] = useState(0);
 
   function screenToShow() {
@@ -26,15 +29,25 @@ function App() {
         );
       case 1:
         return (
-          <Login
+          <Login 
             FECresponse1={() => setScreen(0)}
-            FECresponse2={() => setScreen(2)}
             FECresponse3={() => setScreen(3)}
+            setAccessVar={
+              (access,uID)=>{
+               setToken(access);
+               setUserID(uID);
+                console.log("call from parent: "+access)
+              //document.getElementById("primarytest").access=access;
+              setScreen(2);
+            }
+            }
           ></Login>
         );
       case 2:
         return (
-          <PrimaryScreen
+          <PrimaryScreen id ="primarytest"
+          access={token}
+          customerID={userID}
             FECresponse1={() => setScreen(0)}
             FECresponse2={() => setScreen(4)}
             FECresponse3={() => setScreen(6)}

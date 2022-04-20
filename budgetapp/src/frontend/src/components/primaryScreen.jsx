@@ -3,9 +3,46 @@ import backtemp from "../backtmp.png";
 import menu from "../burgermenu.png";
 import Transaction from "./transactionItem.jsx";
 import user1 from "../user1.png";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
+import ReactDOM from 'react-dom'
 
 function App(props) {
+
+  const [budgetName, setBudgetName] = useState("");
+
+  useEffect(() => {
   
+    console.log("call from child: "+props.access);
+    const data = {}
+    let url = `http://localhost:8080/api/v1/budget/${props.customerID}`
+    const options = {
+      method: 'GET',
+      headers: { 'content-type': 'application/json',
+      Authorization: `Bearer ${props.access}`  },
+      data: data,
+      url
+    }
+    axios(options).then((response) => {
+     console.log(response);
+
+    setBudgetName(response.data[0].name);
+
+
+   for (let i =0; i<response.data[0].cashFlows.length;i++){
+    var div1 = 
+
+
+
+  }
+
+
+    }).catch((error)=>{
+      console.log(error)
+    })
+  });
+
+ 
   function MinimizeMenu(){
     document.getElementById("primaryScreenCMP1").style.visibility="hidden";
     document.getElementById("primaryScreenCMP2").style.visibility="hidden";
@@ -24,7 +61,7 @@ function App(props) {
           <img src={menu} className="primaryScreenBurgerMenuIcon"></img>
         </button>
         <button className="primaryScreenBudgetDropdownContainer">
-          April
+          {budgetName}
         </button>
         <button onClick={() => props.FECresponse2()}className="primaryScreenAddBudget">+</button>
       </div>
@@ -53,18 +90,13 @@ function App(props) {
         <div className="primaryScreenAmountRemainingSubText">Left/day</div>
       </div>
 
-      <div className="primaryScreenTransactionListContainer">
+      <div className="primaryScreenTransactionListContainer" id="primaryScreenTransactionListContainerIdentifier">
         <div className="primaryScreenTransactionListTitleBar">
           <div className="primaryScreenTransactionListTitle">Transactions</div>
         </div>
 
-        <Transaction id="1" icon="transport" title="Transport" amount="-145.60"></Transaction>
-        <Transaction id="2" icon="groceries" title="Groceries" amount="-155.00"></Transaction>
-        <Transaction id="3" icon="eatingout" title="Eating out" amount="-323.50"></Transaction>
-        <Transaction id="4" icon="elec" title="Electronics" amount="-665.00"></Transaction>
-        <Transaction id="5" icon="sports" title="Sport" amount="-222.00"></Transaction>
-        <Transaction id="6" icon="insure" title="Insurance" amount="-60.00"></Transaction>
-        <Transaction id="7" icon="salary" title="Salary" amount="11500.00"></Transaction>
+        <Transaction id="1" icon="transport" title="Test" amount="-145.60"></Transaction>
+  
 
       </div>
 

@@ -4,6 +4,7 @@ import passico from '../passico.png'
 import axios from 'axios'
 
 function App(props) {
+  let access = "";
   let createPost = () => {
     let username = document.getElementById(
       'loginUsernameContainerInputSpaceIdentifier'
@@ -20,9 +21,12 @@ function App(props) {
       url
     }
     axios(options).then((response) => {
-      console.log(response)
-      props.FECresponse2()
+     // console.log(response)
+     access =response.data.access_token;
+     console.log(response);
+     props.setAccessVar(access,1);
     }).catch((error)=>{
+      console.log(error)
      alert("The username and password combination does not exist, Sign up?")
     })
   }
@@ -31,7 +35,6 @@ function App(props) {
       <div className='loginContainer'>
         <button
           onClick={() => {
-           
             createPost()
           }}
           className='loginMainLoginButton'
