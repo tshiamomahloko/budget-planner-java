@@ -17,6 +17,14 @@ function App() {
   const [token, setToken] = useState("");
   const [userID, setUserID] = useState(0);
   const [screen, setScreen] = useState(0);
+  var rendered=[];
+  function isInside(CFID){
+   return rendered.includes(CFID);
+  }
+
+  function addInside(CFID){
+    rendered.push(CFID);
+  }
 
   function screenToShow() {
     switch (screen) {
@@ -53,6 +61,8 @@ function App() {
             FECresponse3={() => setScreen(6)}
             FECresponse4={() => setScreen(7)}
             FECresponse5={() => setScreen(8)}
+            includesCFID={(CFID)=>isInside(CFID)}
+            pushCFID={(CFID)=>addInside(CFID)}
           ></PrimaryScreen>
         );
       case 3:

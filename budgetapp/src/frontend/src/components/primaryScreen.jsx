@@ -13,6 +13,8 @@ function App(props) {
 
   useEffect(() => {
   
+
+   
     console.log("call from child: "+props.access);
     const data = {}
     let url = `http://localhost:8080/api/v1/budget/${props.customerID}`
@@ -30,6 +32,8 @@ function App(props) {
 
 
    for (let i =0; i<response.data[0].cashFlows.length;i++){
+     if (!(props.includesCFID(response.data[0].cashFlows[i].id))){
+    props.pushCFID(response.data[0].cashFlows[i].id);
     var elem1 = document.createElement("img");
     elem1.src=response.data[0].cashFlows[i].name.toLowerCase()+".png";
     elem1.className="transactionItemCategoryIcon";
@@ -48,7 +52,7 @@ function App(props) {
     elem5.appendChild(elem3);
     elem5.appendChild(elem4);
     document.getElementById("primaryScreenTransactionListContainerIdentifier").appendChild(elem5);
-
+     }
   }
 
 
