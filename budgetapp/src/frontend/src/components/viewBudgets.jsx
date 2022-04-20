@@ -16,7 +16,7 @@ function App(props) {
         budget=newBudget;
 
         for (let i = 1; i < numBudgets+1; i++) {
-                if (i!=target){
+                if (i!==target){
                 document.getElementById("SSBI"+i).style.backgroundColor="rgb(230, 230, 230)";
                 }
                 else{
