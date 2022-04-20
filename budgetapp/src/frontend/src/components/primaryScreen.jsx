@@ -30,9 +30,24 @@ function App(props) {
 
 
    for (let i =0; i<response.data[0].cashFlows.length;i++){
-    var div1 = 
-
-
+    var elem1 = document.createElement("img");
+    elem1.src=response.data[0].cashFlows[i].name.toLowerCase()+".png";
+    elem1.className="transactionItemCategoryIcon";
+    var elem2 = document.createElement("div");
+    elem2.className="transactionItemCategoryIconSpace";
+    elem2.appendChild(elem1);
+    var elem3 = document.createElement("div");
+    elem3.className="transactionItemTitle";
+    elem3.innerHTML=response.data[0].cashFlows[i].name;
+    var elem4 = document.createElement("div");
+    elem4.className="transactionItemAmount";
+    elem4.innerHTML=response.data[0].cashFlows[i].amount;
+    var elem5 = document.createElement("div");
+    elem5.className="transactionItemMain";
+    elem5.appendChild(elem2);
+    elem5.appendChild(elem3);
+    elem5.appendChild(elem4);
+    document.getElementById("primaryScreenTransactionListContainerIdentifier").appendChild(elem5);
 
   }
 
