@@ -1,6 +1,8 @@
 package com.javalevelup.budgetapp.Customer;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.javalevelup.budgetapp.Budget.Budget;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -21,6 +23,10 @@ import java.util.*;
                 @UniqueConstraint(name = "UniqueUsername", columnNames = "username")
         }
 )
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Customer implements Serializable {
 
     @Id
@@ -39,16 +45,24 @@ public class Customer implements Serializable {
     private String email;
     private String password;
 
-    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     @ToString.Exclude
-    private Collection<Budget> budgets = new ArrayList<>();
+    private List<Budget> budgets = new ArrayList<>();
 
-    public Customer(Long id, String username, String email, String password) {
-        this.id = id;
+    public Customer(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public void addBudgetToCustomer(Budget budget) {
+        if (!this.budgets.contains(budget)) {
+            this.budgets.add(budget);
+        }
+    }
+
+    public void removeBudgetFromCustomer(Budget budget) {
+        this.budgets.remove(budget);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.javalevelup.budgetapp.CashFlow;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.javalevelup.budgetapp.Budget.Budget;
 import com.javalevelup.budgetapp.Customer.Customer;
 import lombok.*;
@@ -19,6 +21,10 @@ import java.util.Objects;
 @Entity(name="CashFlow")
 @Table(
         name="cashflow"
+)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
 )
 public class CashFlow {
     @Id
@@ -46,12 +52,6 @@ public class CashFlow {
     )
     private Double amount;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id")
-    private Customer customer;
-
-    @JsonBackReference
     @ManyToMany(
             mappedBy = "cashFlows"
     )
