@@ -2,14 +2,13 @@ package com.javalevelup.budgetapp.Budget;
 
 //import com.javalevelup.budgetapp.CashFlow.CashFlow;
 //import com.javalevelup.budgetapp.User.User;
-import com.amazonaws.services.identitymanagement.model.User;
+import com.javalevelup.budgetapp.Customer.Customer;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
@@ -20,15 +19,9 @@ import static java.lang.Long.valueOf;
 public class BudgetService {
     @Autowired
     private final BudgetRepository budgetRepository;
-    private List<Budget> userBudgets;
-
-//    public List<Budget> getUserBudgets(){
-//        return budgetRepository.findAll();
-//    }
 
     public List<Budget> getUserBudgets(Long userID){
-        this.userBudgets = budgetRepository.getCustomerBudgets(userID);
-        return userBudgets;
+        return budgetRepository.getCustomerBudgets((userID));
     }
 
 
@@ -46,12 +39,12 @@ public class BudgetService {
         budgetRepository.save(modifiedBudget);
     }
 
-    public Budget getBudget(Long budgetID){
-        return budgetRepository.getById(budgetID);
+    public Budget getBudgetByID(Long budgetID){
+        return budgetRepository.findById(budgetID).get();
     }
 
-    public void addBudget(String name, Date startDate, Date endDate){
-        budgetRepository.save(new Budget(name, startDate, endDate));
+    public void addBudget(String name, Date startDate, Date endDate, Customer customer){
+        budgetRepository.save(new Budget(name, startDate, endDate, customer));
 
     }
 

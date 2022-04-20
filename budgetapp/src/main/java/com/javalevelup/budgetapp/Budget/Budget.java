@@ -89,12 +89,6 @@ public class Budget {
     )
     private Customer customer;
 
-    public Budget(String name, Date startDate, Date endDate) {
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
     public Budget(String name, Date startDate, Date endDate, Customer customer){
         this.name = name;
         this.startDate = startDate;
