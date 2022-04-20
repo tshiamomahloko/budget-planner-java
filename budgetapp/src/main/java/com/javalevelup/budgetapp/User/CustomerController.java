@@ -4,14 +4,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.javalevelup.budgetapp.User.User;
-import com.javalevelup.budgetapp.User.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.WebAttributes;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -26,12 +23,12 @@ import java.util.Date;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @RestController @RequestMapping(path = "api/v1/users") @RequiredArgsConstructor @Slf4j
-public class UserController {
+public class CustomerController {
 
-    private final UserService userService;
+    private final CustomerService userService;
 
     @GetMapping(path = "get_user/{username}")
-    public User getUser(@PathVariable("username") String username, Principal principal) {
+    public Customer getUser(@PathVariable("username") String username, Principal principal) {
         log.info(principal.getName());
         return userService.getUser(username);
     }
@@ -49,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping(path = "auth/signup")
-    public void addUser(@RequestBody User user) {
+    public void addUser(@RequestBody Customer user) {
         userService.addUser(user);
     }
 
@@ -60,7 +57,7 @@ public class UserController {
 
     @PutMapping(path = "update_user/{username}")
     public void updateUser(@PathVariable("username") String username,
-                           @RequestBody(required = false) User user) {
+                           @RequestBody(required = false) Customer user) {
         userService.updateUser(username, user);
     }
 
@@ -75,7 +72,7 @@ public class UserController {
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = verifier.verify(refresh_token);
                 String username = decodedJWT.getSubject();
-                User user = userService.getUser(username);
+                Customer user = userService.getUser(username);
                 String accessToken = JWT.create()
                         .withSubject(user.getUsername())
                         .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))

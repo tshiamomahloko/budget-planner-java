@@ -1,9 +1,7 @@
 package com.javalevelup.budgetapp.User;
 
-import com.javalevelup.budgetapp.User.User;
 import com.javalevelup.budgetapp.CashFlow.CashFlowRepository;
 import com.javalevelup.budgetapp.Budget.BudgetRepository;
-import com.javalevelup.budgetapp.User.UserRepository;
 import com.javalevelup.budgetapp.Utils.SaveToRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,21 +15,21 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collections;
 
 @Service @RequiredArgsConstructor @Transactional @Slf4j
-public class UserService implements UserDetailsService {
+public class CustomerService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final CustomerRepository userRepository;
     private final BudgetRepository budgetRepository;
     private final CashFlowRepository cashFlowRepository;
     private final SaveToRepository saveToRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public User getUser(String username) {
+    public Customer getUser(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         String.format("User with username %s does not exist", username)));
     }
 
-    public void addUser(User user) {
+    public void addUser(Customer user) {
         if (userRepository.isEmailPresent(user.getEmail()) > 0) {
             throw new IllegalStateException(
                     "Email already exists");
@@ -50,8 +48,8 @@ public class UserService implements UserDetailsService {
         userRepository.deleteByUsername(username);
     }
 
-    public void updateUser(String username, User updatedUser) {
-        User user = userRepository.findByUsername(username)
+    public void updateUser(String username, Customer updatedUser) {
+        Customer user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         String.format("User with username %s does not exist", username)));
         // TODO: updateUser logic
@@ -60,7 +58,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
+        Customer user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         String.format("User with username %s does not exist", username)));
 

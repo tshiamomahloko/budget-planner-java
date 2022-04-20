@@ -21,7 +21,7 @@ import java.util.*;
                 @UniqueConstraint(name = "UniqueUsername", columnNames = "username")
         }
 )
-public class User implements Serializable {
+public class Customer implements Serializable {
 
     @Id
     @SequenceGenerator(
@@ -44,7 +44,7 @@ public class User implements Serializable {
     @ToString.Exclude
     private Collection<Budget> budgets = new ArrayList<>();
 
-    public User(Long id, String username, String email, String password) {
+    public Customer(Long id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -55,7 +55,7 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
+        Customer user = (Customer) o;
         return id != null && Objects.equals(id, user.id);
     }
 

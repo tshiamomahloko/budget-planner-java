@@ -2,16 +2,14 @@ package com.javalevelup.budgetapp.Budget;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.javalevelup.budgetapp.CashFlow.CashFlow;
-import com.javalevelup.budgetapp.User.User;
+import com.javalevelup.budgetapp.User.Customer;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +62,7 @@ public class Budget {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Customer user;
 
     @ManyToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
@@ -87,7 +85,7 @@ public class Budget {
     @ToString.Exclude
     private List<CashFlow> cashFlows = new ArrayList<>();
 
-    public Budget(String name, LocalDate startDate, LocalDate endDate, User user) {
+    public Budget(String name, LocalDate startDate, LocalDate endDate, Customer user) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;

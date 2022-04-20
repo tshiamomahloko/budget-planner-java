@@ -1,12 +1,10 @@
 package com.javalevelup.budgetapp.CashFlow;
 
 import com.javalevelup.budgetapp.Budget.Budget;
-import com.javalevelup.budgetapp.User.User;
+import com.javalevelup.budgetapp.User.Customer;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +46,7 @@ public class CashFlow {
 
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id")
-    private User userId;
+    private Customer userId;
 
     @ManyToMany(
             mappedBy = "cashFlows"
