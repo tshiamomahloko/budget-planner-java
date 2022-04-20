@@ -54,6 +54,7 @@ public class CashFlow {
     )
     private Double amount;
 
+    @JsonIgnore
     @ManyToMany(
             mappedBy = "cashFlows"
     )
