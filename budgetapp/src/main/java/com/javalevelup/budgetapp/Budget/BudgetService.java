@@ -16,8 +16,8 @@ public class BudgetService {
     @Autowired
     private final BudgetRepository budgetRepository;
 
-    public List<Budget> getUserBudgets(Long userID){
-        return budgetRepository.getCustomerBudgets((userID));
+    public List<Budget> getCustomerBudgets(Long customerID){
+        return budgetRepository.getCustomerBudgets((customerID));
     }
 
 
@@ -38,9 +38,8 @@ public class BudgetService {
         return budgetRepository.findById(budgetID).get();
     }
 
-    public void addBudget(String name, LocalDate startDate, LocalDate endDate, Customer customer){
-        budgetRepository.save(new Budget(name, startDate, endDate, customer));
-
+    public void addBudget(Budget budget){
+        budgetRepository.save(budget);
     }
 
 //    public List<CashFlow> getBudgetIncomes(Long budgetID){

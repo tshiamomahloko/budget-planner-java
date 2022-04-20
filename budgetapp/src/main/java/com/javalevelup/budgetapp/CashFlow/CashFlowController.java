@@ -12,17 +12,14 @@ import java.util.Optional;
 public class CashFlowController {
     private CashFlowService cashFlowService;
 
-    @GetMapping
-    public List<CashFlow> getAllCashFlows(){
-        return cashFlowService.getAllCashFlows();
-    }
     @GetMapping(value="/{id}")
     public Optional<CashFlow> getCashFlowById(Long id){
         return cashFlowService.getCashFlowById(id);
     }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean addCashFlow(@RequestBody CashFlow cashFlow){
+    public CashFlow addCashFlow(@RequestBody CashFlow cashFlow){
         return cashFlowService.addCashFlow(cashFlow);
     }
     @DeleteMapping(value = "/{id}")

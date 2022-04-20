@@ -39,13 +39,13 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         String accessToken = JWT.create()
                 .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 180 * 60 * 1000))
                 .withIssuer(request.getRequestURI().toString())
                 .sign(algorithm);
 
         String refreshToken = JWT.create()
                 .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 360 * 60 * 1000))
                 .withIssuer(request.getRequestURI().toString())
                 .sign(algorithm);
 
