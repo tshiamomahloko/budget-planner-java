@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.javalevelup.budgetapp.CashFlow.CashFlow;
-import com.javalevelup.budgetapp.User.Customer;
+import com.javalevelup.budgetapp.Customer.Customer;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -63,10 +63,10 @@ public class Budget {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate endDate;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Customer user;
+//    @JsonBackReference
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private Customer user;
 
     @ManyToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
@@ -100,7 +100,7 @@ public class Budget {
     )
     private Customer customer;
 
-    public Budget(String name, Date startDate, Date endDate, Customer customer){
+    public Budget(String name, LocalDate startDate, LocalDate endDate, Customer customer){
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;

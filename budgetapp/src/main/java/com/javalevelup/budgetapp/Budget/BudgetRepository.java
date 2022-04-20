@@ -1,7 +1,5 @@
 package com.javalevelup.budgetapp.Budget;
 
-import com.amazonaws.services.identitymanagement.model.User;
-import com.javalevelup.budgetapp.Customer.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

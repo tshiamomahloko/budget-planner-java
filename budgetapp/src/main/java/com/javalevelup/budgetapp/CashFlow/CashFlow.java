@@ -1,7 +1,7 @@
 package com.javalevelup.budgetapp.CashFlow;
 
 import com.javalevelup.budgetapp.Budget.Budget;
-import com.javalevelup.budgetapp.User.Customer;
+import com.javalevelup.budgetapp.Customer.Customer;
 import lombok.*;
 
 import javax.persistence.*;

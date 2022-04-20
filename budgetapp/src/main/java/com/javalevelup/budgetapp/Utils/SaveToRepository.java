@@ -1,9 +1,9 @@
 package com.javalevelup.budgetapp.Utils;
 
-import com.javalevelup.budgetapp.User.Customer;
+import com.javalevelup.budgetapp.Customer.Customer;
 import com.javalevelup.budgetapp.CashFlow.CashFlowRepository;
 import com.javalevelup.budgetapp.Budget.BudgetRepository;
-import com.javalevelup.budgetapp.User.CustomerRepository;
+import com.javalevelup.budgetapp.Customer.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;

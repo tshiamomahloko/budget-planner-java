@@ -1,4 +1,4 @@
-package com.javalevelup.budgetapp.User;
+package com.javalevelup.budgetapp.Customer;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
