@@ -62,7 +62,6 @@ public class BudgetService {
         return budgetRepository.findById(budgetID).get();
     }
 
-
     public void addBudget(String username, Budget budget){
         if(budget.getStartDate().isAfter(budget.getEndDate())){
             throw new IllegalStateException("The start date must be before end date.");
