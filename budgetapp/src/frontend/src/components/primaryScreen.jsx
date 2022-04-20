@@ -109,8 +109,6 @@ function App(props) {
         <div className="primaryScreenTransactionListTitleBar">
           <div className="primaryScreenTransactionListTitle">Transactions</div>
         </div>
-
-        <Transaction id="1" icon="transport" title="Test" amount="-145.60"></Transaction>
   
 
       </div>
