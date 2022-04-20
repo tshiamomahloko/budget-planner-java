@@ -44,7 +44,7 @@ function App(props) {
     if (rem<0){
       rem=0;
     }
-    setRemaining(rem);
+    setRemaining(Math.floor(rem));
    for (let i =0; i<response.data[0].cashFlows.length;i++){
      if (!(props.includesCFID(response.data[0].cashFlows[i].id))){
     props.pushCFID(response.data[0].cashFlows[i].id);
