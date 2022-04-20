@@ -108,6 +108,7 @@ public class Budget {
         if(!this.cashFlows.contains(cf)){
             this.cashFlows.add(cf);
             cf.getBudgets().add(this);
+            cf.setCustomer(this.customer);
         }
     }
 

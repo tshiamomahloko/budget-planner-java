@@ -29,6 +29,9 @@ public class BudgetController {
         budgetService.addCashflowToBudget(id, cashFlow);
     }
 
+    @DeleteMapping (path = "/{id}/remove-cash-flow")
+    public void removeCashFlowFromBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow){
+        budgetService.removeCashFlowFromBudget(id, cashFlow);
 
     @GetMapping(value="/{budgetID}")
     public Budget getSingleBudgetById(@PathVariable("budgetID") Long budgetID){
