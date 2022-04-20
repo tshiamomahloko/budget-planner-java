@@ -89,6 +89,7 @@ public class Budget {
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(
             name = "customer_id",
             foreignKey = @ForeignKey(
