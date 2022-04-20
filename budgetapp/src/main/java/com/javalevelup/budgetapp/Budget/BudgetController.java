@@ -62,7 +62,7 @@ public class BudgetController {
 
     @PatchMapping(value = "/{budgetID}")
     @ResponseStatus(HttpStatus.OK)
-    public void modifyBudget(@PathVariable("budgetID")Long budgetID, @RequestParam("budgetName") String budgetName, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate  ){
+    public void modifyBudget(@PathVariable("budgetID")Long budgetID, @RequestParam("budgetName") String budgetName, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
         budgetService.modifyBudget(budgetID, budgetName, startDate, endDate);
     }
 
