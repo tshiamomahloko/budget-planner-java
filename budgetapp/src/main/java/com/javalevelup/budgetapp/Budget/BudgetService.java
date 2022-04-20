@@ -1,5 +1,6 @@
 package com.javalevelup.budgetapp.Budget;
 
+import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import com.javalevelup.budgetapp.Customer.Customer;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,13 @@ public class BudgetService {
     public void addBudget(Budget budget){
         budgetRepository.save(budget);
     }
+
+    public void addCashflowToBudget(Long id, CashFlow cashFlow){
+        Budget budget = getBudgetByID(id);
+        budget.addCashFlowToBudget(cashFlow);
+        budgetRepository.save(budget);
+    }
+
 
 //    public List<CashFlow> getBudgetIncomes(Long budgetID){
 //        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getCashFlowAmount() > 0).toList();
