@@ -20,7 +20,7 @@ public class BudgetService {
     private final BudgetRepository budgetRepository;
 
     public List<Budget> getCustomerBudgets(Long customerID){
-        return budgetRepository.getCustomerBudgets((customerID));
+        return budgetRepository.findAllByCustomerId(customerID);
     }
 
     public void replicateBudget(Long budgetID){
@@ -45,9 +45,19 @@ public class BudgetService {
     }
 
     public void addCashflowToBudget(Long id, CashFlow cashFlow){
+        try{
+            Budget budget = getBudgetByID(id);
+            budget.addCashFlowToBudget(cashFlow);
+            budgetRepository.save(budget);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void removeCashFlowFromBudget(Long id, CashFlow cashFlow){
         Budget budget = getBudgetByID(id);
-        log.info(budget.toString());
-        budget.addCashFlowToBudget(cashFlow);
+        budget.removeCashFlowFromBudget(cashFlow);
         budgetRepository.save(budget);
     }
 

@@ -45,6 +45,7 @@ public class CashFlow {
             columnDefinition = "TEXT"
     )
     private String name;
+
     @Column(
             name="cashflow_amount",
             nullable = false,
@@ -55,8 +56,10 @@ public class CashFlow {
     @ManyToMany(
             mappedBy = "cashFlows"
     )
-    @ToString.Exclude
     private List<Budget> budgets = new ArrayList<>();
+
+    @ManyToOne
+    private Customer customer;
 
     public CashFlow(String name, Double amount) {
         this.name = name;
