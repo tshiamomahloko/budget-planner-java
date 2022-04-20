@@ -21,7 +21,6 @@ public class BudgetService {
         return budgetRepository.getCustomerBudgets((customerID));
     }
 
-
     public void replicateBudget(Long budgetID){
         Budget budget = budgetRepository.findById(budgetID).get();
         budgetRepository.save(new Budget(budget.getName(), budget.getStartDate(), budget.getEndDate(), budget.getCustomer()));
@@ -50,13 +49,13 @@ public class BudgetService {
     }
 
 
-//    public List<CashFlow> getBudgetIncomes(Long budgetID){
-//        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getCashFlowAmount() > 0).toList();
-//    }
-//
-//    public List<CashFlow> getBudgetExpenses(Long budgetID){
-//        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getCashFlowAmount() < 0).toList();
-//    }
+    public List<CashFlow> getBudgetIncomes(Long budgetID){
+        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getAmount() > 0).toList();
+    }
+
+    public List<CashFlow> getBudgetExpenses(Long budgetID){
+        return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getAmount() < 0).toList();
+    }
 
     public String displayBudget(Budget budget){
         String printedBudget = "";

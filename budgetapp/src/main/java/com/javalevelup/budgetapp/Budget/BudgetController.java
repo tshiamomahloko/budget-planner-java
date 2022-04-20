@@ -35,10 +35,19 @@ public class BudgetController {
     }
 
     @GetMapping(value="/{budgetID}")
-    public Budget getOneBudget(@PathVariable("budgetID") Long budgetID){
+    public Budget getSingleBudgetById(@PathVariable("budgetID") Long budgetID){
         return budgetService.getBudgetByID(budgetID);
     }
 
+    @GetMapping(path = "incomes/{budgetID}")
+    public List<CashFlow> getBudgetIncomes(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetIncomes(budgetID);
+    }
+
+    @GetMapping(path = "expenses/{budgetID}")
+    public List<CashFlow> getBudgetExpenses(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetExpenses(budgetID);
+    }
 
     @PostMapping(value = "/{budgetID}")
     @ResponseStatus(HttpStatus.CREATED)
