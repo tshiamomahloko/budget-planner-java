@@ -5,8 +5,7 @@ import Transaction from "./transactionItem.jsx";
 import user1 from "../user1.png";
 
 function App(props) {
-  console.log(props)
-
+  
   function MinimizeMenu(){
     document.getElementById("primaryScreenCMP1").style.visibility="hidden";
     document.getElementById("primaryScreenCMP2").style.visibility="hidden";
