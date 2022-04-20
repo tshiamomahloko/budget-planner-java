@@ -1,6 +1,7 @@
 package com.javalevelup.budgetapp.CashFlow;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.AllArgsConstructor;
 import java.util.List;
@@ -12,24 +13,19 @@ import java.util.Optional;
 public class CashFlowController {
     private CashFlowService cashFlowService;
 
-    @GetMapping(value="/{id}")
-    public Optional<CashFlow> getCashFlowById(Long id){
-        return cashFlowService.getCashFlowById(id);
+    @GetMapping(path="{customerId}")
+    public List<CashFlow> getUserCashFlows(@PathVariable("customerId") Long customerId){
+        return cashFlowService.getCustomerCashFlows(customerId);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public CashFlow addCashFlow(@RequestBody CashFlow cashFlow){
-        return cashFlowService.addCashFlow(cashFlow);
+    @GetMapping(path="{customerId}/{budgetId}")
+    public Optional<CashFlow> getCustomerCashFlowById(@PathVariable("customerId") Long customerId, @PathVariable("budgetId") Long budgetId){
+        return cashFlowService.getCustomerCashFlowById(customerId, budgetId);
     }
-    @DeleteMapping(value = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public boolean deleteCashFlow(@PathVariable Long id){
-        return cashFlowService.removeCashFlow(id);
-    }
-    @GetMapping(value = "/count")
-    public Long getCount(){
-        return cashFlowService.getCount();
+
+    @DeleteMapping(path="{cashFlowId}")
+    public ResponseEntity<String> deleteCustomerCashFlowById(@PathVariable("cashFlowId") Long cashFlowId){
+        return cashFlowService.removeCustomerCashFlowById(cashFlowId);
     }
    
 }

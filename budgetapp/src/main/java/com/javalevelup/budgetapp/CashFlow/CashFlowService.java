@@ -1,7 +1,9 @@
 package com.javalevelup.budgetapp.CashFlow;
 
+import com.javalevelup.budgetapp.Budget.Budget;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,28 +23,31 @@ public class CashFlowService  {
        return cashFlows;
     }
 
-    public Optional<CashFlow> getCashFlowById(Long id){
-        return  cashFlowRepository.findById(id);
-    }
-
     public CashFlow addCashFlow(CashFlow cashFlow){
         return cashFlowRepository.save(cashFlow);
     }
-    public boolean removeCashFlow(Long id){
-        boolean isRemoved = false;
-        var cashFlow = cashFlowRepository.getById(id);
-        if(cashFlow != null){
-            try {
-                cashFlowRepository.delete(cashFlow);
-            } catch(Exception e) {
-                e.printStackTrace();
-                isRemoved = true;
-            }
-        }
-        return isRemoved;
-    }
-    public Long getCount(){
-        return cashFlowRepository.count();
+
+    public List<CashFlow> getCustomerCashFlows(Long customerId){
+        return cashFlowRepository.findByCustomerId(customerId);
     }
 
+    public Optional<CashFlow> getCustomerCashFlowById(Long customerId, Long budgetId){
+        return  getCustomerCashFlows(customerId).stream()
+                .filter(cf -> cf.getId().equals(budgetId))
+                .findFirst();
+    }
+
+    public ResponseEntity<String> removeCustomerCashFlowById(Long cashFlowId) {
+        try{
+            Optional<CashFlow> cashflow = cashFlowRepository.findById(cashFlowId);
+            List<Budget> budgets = new ArrayList<>();
+            cashflow.ifPresent(cf -> budgets.addAll(cf.getBudgets()));
+            budgets.stream().forEach(b -> b.removeCashFlowFromBudget(cashflow.get()));
+            cashFlowRepository.deleteById(cashFlowId);
+            return ResponseEntity.ok("Deleted cashflow");
+        }catch(Exception e){
+            return ResponseEntity.ok(e.toString());
+        }
+
+    }
 }

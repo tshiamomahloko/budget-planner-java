@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.Objects;
 
 @Service @RequiredArgsConstructor @Transactional @Slf4j
 public class CustomerService implements UserDetailsService {
@@ -52,8 +53,21 @@ public class CustomerService implements UserDetailsService {
         Customer user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         String.format("User with username %s does not exist", username)));
-        // TODO: updateUser logic
-
+        if (updatedUser.getUsername() != null && !updatedUser.getUsername().isEmpty()) {
+            if (!Objects.equals(updatedUser.getUsername(), user.getUsername())) {
+                user.setUsername(updatedUser.getUsername());
+            }
+        }
+        if (updatedUser.getEmail() != null && !updatedUser.getEmail().isEmpty()) {
+            if (userRepository.isEmailPresent(updatedUser.getEmail()) > 0) {
+                throw new IllegalStateException(
+                        String.format("Email %s already exists", updatedUser.getEmail()));
+            }
+            user.setEmail(updatedUser.getEmail());
+        }
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        }
     }
 
     @Override

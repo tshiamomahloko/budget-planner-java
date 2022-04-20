@@ -13,20 +13,45 @@ import java.util.List;
 public class BudgetController {
     private final BudgetService budgetService;
 
-    @GetMapping(path = "/{customerId}")
-    public List<Budget> getCustomerBudgets(@PathVariable("customerId") Long customerId){
+    @GetMapping(path = "{username}/get-budgets")
+    public List<Budget> getCustomerBudgets(@PathVariable("username") String customerId){
         return budgetService.getCustomerBudgets(customerId);
     }
 
 
-    @PostMapping
-    public void addBudget(@RequestBody Budget budget) {
-        budgetService.addBudget(budget);
+    @PostMapping(path = "{username}/add-budget")
+    public void addBudget(@PathVariable("username") String username, @RequestBody Budget budget) {
+        budgetService.addBudget(username, budget);
     }
 
     @PostMapping(path = "/{id}/add-cash-flow")
     public void addCashflowToBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow){
         budgetService.addCashflowToBudget(id, cashFlow);
+    }
+
+    @DeleteMapping (path = "/{id}/remove-cash-flow")
+    public void removeCashFlowFromBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow) {
+        budgetService.removeCashFlowFromBudget(id, cashFlow);
+    }
+
+    @GetMapping(value="/{budgetID}")
+    public Budget getSingleBudgetById(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetByID(budgetID);
+    }
+
+    @GetMapping(path = "incomes/{budgetID}")
+    public List<CashFlow> getBudgetIncomes(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetIncomes(budgetID);
+    }
+
+    @GetMapping(path = "expenses/{budgetID}")
+    public List<CashFlow> getBudgetExpenses(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetExpenses(budgetID);
+    }
+
+    @GetMapping(path = "balance/{budgetID}")
+    public Double getBudgetBalance(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetBalance(budgetID);
     }
 
     @PostMapping(value = "/{budgetID}")
@@ -37,7 +62,7 @@ public class BudgetController {
 
     @PatchMapping(value = "/{budgetID}")
     @ResponseStatus(HttpStatus.OK)
-    public void modifyBudget(@PathVariable("budgetID")Long budgetID, @RequestParam("budgetName") String budgetName, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate  ){
+    public void modifyBudget(@PathVariable("budgetID")Long budgetID, @RequestParam("budgetName") String budgetName, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
         budgetService.modifyBudget(budgetID, budgetName, startDate, endDate);
     }
 
