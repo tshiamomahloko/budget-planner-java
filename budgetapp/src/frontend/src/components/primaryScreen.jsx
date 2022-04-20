@@ -10,14 +10,17 @@ import ReactDOM from 'react-dom'
 function App(props) {
 
   const [budgetName, setBudgetName] = useState("");
-
+  const[incomeAll,setIncomeAll]= useState(0);
+  const[expenseAll,setExpenseAll]=useState(0);
+  const[days,setDays]=useState(0);
+  const[remaining,setRemaining]=useState(0);
   useEffect(() => {
   
 
    
     console.log("call from child: "+props.access);
     const data = {}
-    let url = `http://localhost:8080/api/v1/budget/${props.customerID}`
+    let url = `http://localhost:8080/api/v1/budget/${props.userName}/get-budgets`
     const options = {
       method: 'GET',
       headers: { 'content-type': 'application/json',
@@ -30,7 +33,18 @@ function App(props) {
 
     setBudgetName(response.data[0].name);
 
-
+    setIncomeAll(response.data[0].incomeTotal);
+    setExpenseAll(Math.abs(response.data[0].expenseTotal));
+    var endDate = new Date(response.data[0].endDate.split("-").reverse().join("-"));
+    console.log("end:: "+endDate);
+    var today=new Date();
+    var one_day=1000*60*60*24;
+    setDays(Math.ceil((endDate-today.getTime())/(one_day)));
+    var rem = (response.data[0].incomeTotal-Math.abs(response.data[0].expenseTotal))/days;
+    if (rem<0){
+      rem=0;
+    }
+    setRemaining(rem);
    for (let i =0; i<response.data[0].cashFlows.length;i++){
      if (!(props.includesCFID(response.data[0].cashFlows[i].id))){
     props.pushCFID(response.data[0].cashFlows[i].id);
@@ -87,7 +101,7 @@ function App(props) {
       <div className="primaryScreenIncomeExpenseVisualizer">
         <div className="primaryScreenIncomeVisualizer">
           <div className="primaryScreenIncomeTitle">Income</div>
-          <div className="primaryScreenIncomeDisplay">R25 200.00</div>
+          <div className="primaryScreenIncomeDisplay">R{incomeAll}</div>
         </div>
         <div className="primaryScreenExpenseVisualizer">
           <img
@@ -95,17 +109,17 @@ function App(props) {
             className="primaryScreenIncomeExpenseVisualizerGraphic"
           ></img>
           <div className="primaryScreenExpenseTitle">Expenses</div>
-          <div className="primaryScreenExpenseDisplay">R25 000.00</div>
+          <div className="primaryScreenExpenseDisplay">R{expenseAll}</div>
         </div>
       </div>
 
       <div className="primaryScreenDaysRemainingContainer">
-        <div className="primaryScreenDaysRemainingCounter">5</div>
+        <div className="primaryScreenDaysRemainingCounter">{days}</div>
         <div className="primaryScreenDaysRemainingSubText">Days to go</div>
       </div>
 
       <div className="primaryScreenAmountRemainingContainer">
-        <div className="primaryScreenAmountRemainingCounter">R40.00</div>
+        <div className="primaryScreenAmountRemainingCounter">R{remaining}</div>
         <div className="primaryScreenAmountRemainingSubText">Left/day</div>
       </div>
 

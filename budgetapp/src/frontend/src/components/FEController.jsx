@@ -15,7 +15,7 @@ import ExpenseCreate from "./expenseCreate.jsx";
 function App() {
 
   const [token, setToken] = useState("");
-  const [userID, setUserID] = useState(0);
+  const [userID, setUserID] = useState("");
   const [screen, setScreen] = useState(0);
   var rendered=[];
   function isInside(CFID){
@@ -55,7 +55,7 @@ function App() {
         return (
           <PrimaryScreen id ="primarytest"
           access={token}
-          customerID={userID}
+          userName={userID}
             FECresponse1={() => setScreen(0)}
             FECresponse2={() => setScreen(4)}
             FECresponse3={() => setScreen(6)}
