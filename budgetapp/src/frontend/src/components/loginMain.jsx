@@ -2,6 +2,10 @@ import "../component-styles/loginMain.css";
 import emailico from '../emailico.png';
 import passico from '../passico.png';
 
+
+//username:lebus
+//password: lebuspassword
+
 function App(props) {
   return (
     <div className="loginMain">
