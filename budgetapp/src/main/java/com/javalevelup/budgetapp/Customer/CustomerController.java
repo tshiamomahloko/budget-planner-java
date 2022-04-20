@@ -22,6 +22,8 @@ import java.util.Date;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
+
+ @CrossOrigin
 @RestController @RequestMapping(path = "api/v1/users") @RequiredArgsConstructor @Slf4j
 public class CustomerController {
 

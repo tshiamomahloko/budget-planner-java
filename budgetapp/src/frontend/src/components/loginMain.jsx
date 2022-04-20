@@ -1,17 +1,33 @@
 import "../component-styles/loginMain.css";
-import emailico from '../emailico.png';
-import passico from '../passico.png';
-
-
-//username:lebus
-//password: lebuspassword
+import emailico from "../emailico.png";
+import passico from "../passico.png";
+import axios from "axios";
 
 function App(props) {
+  let url = "http://localhost:8080/api/v1/users/auth/login";
+  let createPost = () => {
+      axios({
+        method: 'POST',
+        url: 'http://localhost:8080/api/v1/users/auth/login',
+        data: JSON.stringify({
+          username: 'lebus',
+          password: 'lebuspassword'
+        }),
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+  };
   return (
     <div className="loginMain">
       <div className="loginContainer">
         <button
-          onClick={() => props.FECresponse2()}
+          onClick={() => {
+            props.FECresponse2();
+            createPost();
+          }}
           className="loginMainLoginButton"
         >
           Log In
