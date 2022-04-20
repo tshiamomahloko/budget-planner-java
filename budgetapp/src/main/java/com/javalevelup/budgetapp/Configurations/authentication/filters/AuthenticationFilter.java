@@ -3,6 +3,7 @@ package com.javalevelup.budgetapp.Configurations.authentication.filters;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -61,10 +63,18 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        com.javalevelup.budgetapp.dto.UserDto user = null;
+        
+        try {
+            String userHolder = String.valueOf(request.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+            Gson jsonParser = new Gson();
+            user = jsonParser.fromJson(userHolder, com.javalevelup.budgetapp.dto.UserDto.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+        assert user != null;
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
 
         return authenticationManager.authenticate(authenticationToken);
     }
