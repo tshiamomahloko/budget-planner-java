@@ -15,14 +15,20 @@ import java.util.Optional;
 public class BudgetController {
     private final BudgetService budgetService;
 
-    @GetMapping(path = "/{id}")
-    public List<Budget> getBudgets(@PathVariable("id") Long customerId){
+    @GetMapping(path = "/{customerId}")
+    public List<Budget> getCustomerBudgets(@PathVariable("customerId") Long customerId){
         return budgetService.getCustomerBudgets(customerId);
     }
+
 
     @PostMapping
     public void addBudget(@RequestBody Budget budget) {
         budgetService.addBudget(budget);
+    }
+
+    @PostMapping(path = "/{id}/add-cash-flow")
+    public void addCashflowToBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow){
+        budgetService.addCashflowToBudget(id, cashFlow);
     }
 
 //    @GetMapping(value="/{budgetID}")

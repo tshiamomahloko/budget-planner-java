@@ -1,5 +1,6 @@
 package com.javalevelup.budgetapp.CashFlow;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.javalevelup.budgetapp.Budget.Budget;
 import com.javalevelup.budgetapp.Customer.Customer;
 import lombok.*;
@@ -14,6 +15,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Entity(name="CashFlow")
 @Table(
         name="cashflow"
@@ -44,21 +46,21 @@ public class CashFlow {
     )
     private Double amount;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private Customer customer;
 
+    @JsonBackReference
     @ManyToMany(
             mappedBy = "cashFlows"
     )
     @ToString.Exclude
     private List<Budget> budgets = new ArrayList<>();
 
-    public CashFlow(String name, Double amount, Customer customer, List<Budget> budgets) {
+    public CashFlow(String name, Double amount) {
         this.name = name;
         this.amount = amount;
-        this.customer = customer;
-        this.budgets = budgets;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.javalevelup.budgetapp.Budget;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.javalevelup.budgetapp.CashFlow.CashFlow;
 import com.javalevelup.budgetapp.Customer.Customer;
 
@@ -63,8 +64,9 @@ public class Budget {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate endDate;
 
+    @JsonManagedReference
     @ManyToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+            cascade = {CascadeType.ALL}
     )
     @JoinTable(
             name="budget_cash_flow",
