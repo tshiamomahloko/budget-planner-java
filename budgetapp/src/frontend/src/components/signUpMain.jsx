@@ -6,7 +6,11 @@ import axios from 'axios'
 
 function App(props) {
   let createPost = ()=>{
-    const data = { username: 'tshiamo', password: 'mahlokohum', email: 'tshiamo@gmail.com'}
+   let username=document.getElementById("signUpNameContainerInputSpaceIdentifier").value;
+   let email=document.getElementById("signUpEmailContainerInputSpaceIdentifier").value;
+   let password=document.getElementById("signUpPasswordContainerInputSpaceIdentifier").value;
+
+    const data = { username: username, password: password, email: email}
     let url = 'http://localhost:8080/api/v1/users/auth/signup'
     const options = {
       method: 'POST',
@@ -16,7 +20,7 @@ function App(props) {
     }
     axios(options).then((response) => {
       console.log(response)
-    })
+    }).catch(alert("Oops, something is wrong. Already have an account?"))
   }
   return (
     <div className="signUpMain">
@@ -43,8 +47,8 @@ function App(props) {
           <div className="signUpNameContainerIconSpace">
             <img src={userico} className="signUpIcons"></img>
           </div>
-          <input
-            placeholder="Name"
+          <input id="signUpNameContainerInputSpaceIdentifier"
+            placeholder="Username"
             className="signUpNameContainerInputSpace"
           ></input>
         </div>
@@ -52,7 +56,7 @@ function App(props) {
           <div className="signUpEmailContainerIconSpace">
             <img src={emailico} className="signUpIcons"></img>
           </div>
-          <input
+          <input id = "signUpEmailContainerInputSpaceIdentifier"
             placeholder="Email"
             className="signUpEmailContainerInputSpace"
           ></input>
@@ -61,7 +65,7 @@ function App(props) {
           <div className="signUpPasswordContainerIconSpace">
             <img src={passico} className="signUpIcons"></img>
           </div>
-          <input
+          <input id ="signUpPasswordContainerInputSpaceIdentifier"
             placeholder="Password"
             type="password"
             className="signUpPasswordContainerInputSpace"
