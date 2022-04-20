@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 @ToString
@@ -107,6 +108,22 @@ public class Budget {
         this.customer = customer;
     }
 
+    public Double getIncomeTotal() {
+        AtomicReference<Double> incomeTotal = new AtomicReference<>(0.0);
+        getCashFlows().stream()
+                .filter((b) -> b.getAmount() > 0)
+                .forEach(n -> incomeTotal.updateAndGet(v -> v + n.getAmount()));
+        return incomeTotal.get();
+    }
+
+    public Double getExpenseTotal() {
+        AtomicReference<Double> expenseTotal = new AtomicReference<>(0.0);
+        getCashFlows().stream()
+                .filter((b) -> b.getAmount() < 0)
+                .forEach(n -> expenseTotal.updateAndGet(v -> v + n.getAmount()));
+        return expenseTotal.get();
+    }
+
     public void addCashFlowToBudget(CashFlow cf){
         if(!this.cashFlows.contains(cf)){
             this.cashFlows.add(cf);
@@ -116,16 +133,8 @@ public class Budget {
     }
 
     public void removeCashFlowFromBudget(CashFlow cf) {
-        log.info("BUDGETS");
-        log.info(cf.getBudgets().toString());
         cf.getBudgets().remove(this);
-        log.info("AFTER");
-        log.info(cf.getBudgets().toString());
-        log.info("CUSTOMER");
-        log.info(cf.getCustomer().toString());
         cf.setCustomer(null);
-        log.info("AFTER");
-        log.info(cf.getCustomer().toString());
         this.cashFlows.remove(cf);
     }
 
