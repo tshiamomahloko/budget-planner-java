@@ -49,6 +49,11 @@ public class BudgetController {
         return budgetService.getBudgetExpenses(budgetID);
     }
 
+    @GetMapping(path = "balance/{budgetID}")
+    public Double getBudgetBalance(@PathVariable("budgetID") Long budgetID){
+        return budgetService.getBudgetBalance(budgetID);
+    }
+
     @PostMapping(value = "/{budgetID}")
     @ResponseStatus(HttpStatus.CREATED)
     public void replicateBudget(@PathVariable("budgetID") Long budgetID){

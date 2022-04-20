@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @AllArgsConstructor
 @Service
@@ -69,6 +73,18 @@ public class BudgetService {
     public List<CashFlow> getBudgetExpenses(Long budgetID){
         return budgetRepository.findById(budgetID).get().getCashFlows().stream().filter(cashFlow -> cashFlow.getAmount() < 0).toList();
     }
+
+    public Double getBudgetBalance(Long budgetID){
+        List<CashFlow> budgetCashFlow = Stream.of(getBudgetIncomes(budgetID), getBudgetExpenses(budgetID)).flatMap(Collection::stream).collect(Collectors.toList());
+        Double balance = 0.0;
+        for(CashFlow cf : budgetCashFlow){
+            balance += cf.getAmount();
+        }
+
+        return balance;
+    }
+
+
 
     public String displayBudget(Budget budget){
         String printedBudget = "";
