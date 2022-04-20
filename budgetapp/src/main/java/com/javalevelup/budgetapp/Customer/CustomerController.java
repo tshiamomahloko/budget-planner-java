@@ -33,18 +33,6 @@ public class CustomerController {
         return userService.getUser(username);
     }
 
-    @GetMapping(path = "auth/login-error")
-    public void login(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            AuthenticationException ex = (AuthenticationException) session
-                    .getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-            if (ex != null) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
-            }
-        }
-    }
-
     @PostMapping(path = "auth/signup")
     public void addUser(@RequestBody Customer user) {
         log.info(user.toString());
