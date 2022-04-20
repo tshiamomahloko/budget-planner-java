@@ -63,11 +63,6 @@ public class Budget {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate endDate;
 
-//    @JsonBackReference
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private Customer user;
-
     @ManyToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
     )

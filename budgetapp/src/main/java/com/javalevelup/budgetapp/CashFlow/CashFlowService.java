@@ -24,17 +24,9 @@ public class CashFlowService  {
     public Optional<CashFlow> getCashFlowById(Long id){
         return  cashFlowRepository.findById(id);
     }
-    public boolean addCashFlow(CashFlow cashFlow){
-        boolean isAdded = false;
-        if(cashFlow != null){
-            try {
-                cashFlowRepository.save(cashFlow);
-            } catch(Exception e) {
-                e.printStackTrace();
-                isAdded = true;
-            }
-        }
-        return isAdded;
+
+    public CashFlow addCashFlow(CashFlow cashFlow){
+        return cashFlowRepository.save(cashFlow);
     }
     public boolean removeCashFlow(Long id){
         boolean isRemoved = false;

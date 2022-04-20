@@ -3,17 +3,17 @@ package com.javalevelup.budgetapp.CashFlow;
 import com.javalevelup.budgetapp.Budget.Budget;
 import com.javalevelup.budgetapp.Customer.Customer;
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @ToString
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+@RequiredArgsConstructor
 @Entity(name="CashFlow")
 @Table(
         name="cashflow"
@@ -42,15 +42,35 @@ public class CashFlow {
             nullable = false,
             columnDefinition = "decimal"
     )
-    private Double CashFlowAmount;
+    private Double amount;
 
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id")
-    private Customer userId;
+    private Customer customer;
 
     @ManyToMany(
             mappedBy = "cashFlows"
     )
-private List<Budget> budgets = new ArrayList<>();
+    @ToString.Exclude
+    private List<Budget> budgets = new ArrayList<>();
 
+    public CashFlow(String name, Double amount, Customer customer, List<Budget> budgets) {
+        this.name = name;
+        this.amount = amount;
+        this.customer = customer;
+        this.budgets = budgets;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        CashFlow cashFlow = (CashFlow) o;
+        return id != null && Objects.equals(id, cashFlow.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
