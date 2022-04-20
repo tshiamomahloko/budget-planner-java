@@ -1,0 +1,81 @@
+.viewBudgetsMain{
+    background-color: var(--offwhite);
+    height:100vh;
+    width:100vw;
+    }
+
+  .viewBudgetsBackButton{
+    color: rgb(98, 0, 255);
+    font-weight: 600;
+    font-size: 13px;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    background-color: rgba(188, 139, 201, 0.651);
+    border-radius: 5px;
+    padding: 6px 5px 5px 5px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+
+    .viewBudgetBudgetsContainer{
+        position: absolute;
+        top:130px;
+        background-color: rgb(255, 255, 255);
+        height:calc(80vh - 110px);
+        width: 90vw;
+        left: 5vw;
+        border-radius: 13px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      overflow: auto;
+      padding-top: 40px;
+    }
+
+    .viewBudgetBudgetviewButton{
+        height:60px;
+        width:90%;
+        position: absolute;
+        left:5%;
+        bottom:20px;
+        border-radius: 13px;
+        color: rgb(98, 0, 255);
+        font-weight: 600;
+        font-size: 18px;
+        background-color: rgba(188, 139, 201, 0.651);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        border: none;
+    }
+
+    .viewBudgetsTitle{
+        
+        width:60vw;
+        left:20vw;
+        position: absolute;
+        text-align: center;
+        top:80px;
+        font-size: 19px;
+        font-weight: 600;
+    }
+
+    .viewBudgetBudgetsContainerTitle{
+        position: absolute;
+        width:50%;
+        left:25%;
+        text-align: center;
+        top:15px;
+        font-size: 13px;
+        color:rgb(194, 194, 194);
+        font-weight: 600;
+    }
+
+    .viewBudgetBudgetsContainerItemOutline{
+      border-style: solid;
+      border-width: 1px;
+      border-color: rgb(230, 230, 230);
+      border-top: none;
+      width:100%;
+      padding:5px 5px 5px 5px;
+    }

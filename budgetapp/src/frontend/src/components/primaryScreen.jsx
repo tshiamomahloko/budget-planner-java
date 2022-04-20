@@ -2,18 +2,31 @@ import "../component-styles/primaryScreen.css";
 import backtemp from "../backtmp.png";
 import menu from "../burgermenu.png";
 import Transaction from "./transactionItem.jsx";
+import user1 from "../user1.png";
 
 function App(props) {
+
+  function MinimizeMenu(){
+    document.getElementById("primaryScreenCMP1").style.visibility="hidden";
+    document.getElementById("primaryScreenCMP2").style.visibility="hidden";
+  }
+
+  function MaximizeMenu(){
+    document.getElementById("primaryScreenCMP2").style.visibility="visible";
+    document.getElementById("primaryScreenCMP1").style.visibility="visible";
+  }
+
+
   return (
     <div className="primaryScreenMain">
       <div className="primaryScreenMenuBar">
-        <button className="primaryScreenBurgerMenuButton">
+        <button onClick ={()=>MaximizeMenu()} className="primaryScreenBurgerMenuButton">
           <img src={menu} className="primaryScreenBurgerMenuIcon"></img>
         </button>
         <button className="primaryScreenBudgetDropdownContainer">
-          April ▼
+          April
         </button>
-        <button className="primaryScreenAddBudget">+</button>
+        <button onClick={() => props.FECresponse2()}className="primaryScreenAddBudget">+</button>
       </div>
       <div className="primaryScreenIncomeExpenseVisualizer">
         <div className="primaryScreenIncomeVisualizer">
@@ -45,19 +58,45 @@ function App(props) {
           <div className="primaryScreenTransactionListTitle">Transactions</div>
         </div>
 
-        <Transaction icon="transport" title="Transport" amount="-R145.60"></Transaction>
-        <Transaction icon="groceries" title="Groceries" amount="-R155.00"></Transaction>
-        <Transaction icon="eatingout" title="Eating out" amount="-R323.50"></Transaction>
-        <Transaction icon="elec" title="Electronics" amount="-R665.00"></Transaction>
-        <Transaction icon="sports" title="Sport" amount="-R222.00"></Transaction>
-        <Transaction icon="insure" title="Insurance" amount="-R60.00"></Transaction>
-        <Transaction icon="salary" title="Salary" amount="R11500.00"></Transaction>
+        <Transaction id="1" icon="transport" title="Transport" amount="-145.60"></Transaction>
+        <Transaction id="2" icon="groceries" title="Groceries" amount="-155.00"></Transaction>
+        <Transaction id="3" icon="eatingout" title="Eating out" amount="-323.50"></Transaction>
+        <Transaction id="4" icon="elec" title="Electronics" amount="-665.00"></Transaction>
+        <Transaction id="5" icon="sports" title="Sport" amount="-222.00"></Transaction>
+        <Transaction id="6" icon="insure" title="Insurance" amount="-60.00"></Transaction>
+        <Transaction id="7" icon="salary" title="Salary" amount="11500.00"></Transaction>
 
       </div>
 
-      <div className="primaryScreenAddIncomeExpense">+</div>
+      <button onClick={() => props.FECresponse5()} className="primaryScreenAddIncomeExpense">+</button>
+      <div id="primaryScreenCMP1" className="primaryScreenSlideOutMenu">
+      <div className="primaryScreenSlideOutMenuTitle">
+        Paulo N.
+        </div>
+        <button onClick={() => props.FECresponse1()} className="primaryScreenSlideOutMenuSignOut">
+          {"Sign out"}
+        </button>
+      
+      <div className="primaryScreenSlideOutMenuIconSpace">
+      <img src={user1} className="primaryScreenSlideOutMenuIcon">
+      </img>
+      </div>
+      <button onClick={() => props.FECresponse3()} className="primaryScreenSlideOutMenuEditBudgets">
+          View or Edit Budgets
+      </button>
+      <button onClick={() => props.FECresponse4()} className="primaryScreenSlideOutMenuExportBudgets">
+          Export Budgets
+      </button>
+      <button  onClick ={()=>MinimizeMenu()} className="primaryScreenSlideOutMenuMinimize">
+          {"Close Menu"}
+        </button>
+      </div>
+      <div id="primaryScreenCMP2" className="primaryScreenSlideOutMenuShade">
+        </div>
     </div>
   );
-}
+}//make menu opposite opaque
+
+//transactions positive orangy neg blue 
 
 export default App;
