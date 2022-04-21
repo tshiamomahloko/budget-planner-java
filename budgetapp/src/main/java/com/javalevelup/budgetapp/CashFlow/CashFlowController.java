@@ -1,31 +1,43 @@
 package com.javalevelup.budgetapp.CashFlow;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.AllArgsConstructor;
+
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping(path="api/v1/cashflows")
 @AllArgsConstructor
+@Slf4j
 public class CashFlowController {
     private CashFlowService cashFlowService;
 
-    @GetMapping(path="{customerId}")
-    public List<CashFlow> getUserCashFlows(@PathVariable("customerId") Long customerId){
-        return cashFlowService.getCustomerCashFlows(customerId);
+    @GetMapping(path="{username}")
+    public List<CashFlow> getUserCashFlows(@PathVariable("username") String username, Principal principal){
+        if (username.equals(principal.getName())) {
+            return cashFlowService.getCustomerCashFlows(username);
+        }
+        throw new IllegalStateException(
+                "User not authorized to access information");
     }
 
-    @GetMapping(path="{customerId}/{budgetId}")
-    public Optional<CashFlow> getCustomerCashFlowById(@PathVariable("customerId") Long customerId, @PathVariable("budgetId") Long budgetId){
-        return cashFlowService.getCustomerCashFlowById(customerId, budgetId);
-    }
+//    @GetMapping(path="{customerId}/{budgetId}")
+//    public Optional<CashFlow> getCustomerCashFlowById(@PathVariable("customerId") Long customerId, @PathVariable("budgetId") Long budgetId){
+//        return cashFlowService.getCustomerCashFlowById(customerId, budgetId);
+//        return null;
+//    }
 
-    @DeleteMapping(path="{cashFlowId}")
-    public ResponseEntity<String> deleteCustomerCashFlowById(@PathVariable("cashFlowId") Long cashFlowId){
-        return cashFlowService.removeCustomerCashFlowById(cashFlowId);
+    @DeleteMapping(path="{username}/delete_cash_flow/{cashFlowId}")
+    public void deleteCustomerCashFlowById(@PathVariable("username") String username, @PathVariable("cashFlowId") Long cashFlowId,Principal principal){
+        if (username.equals(principal.getName())) {
+            cashFlowService.removeCustomerCashFlowById(cashFlowId);
+        } else throw new IllegalStateException(
+                "Not authorized to delete this cash flow");
     }
    
 }

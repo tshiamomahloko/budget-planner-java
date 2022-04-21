@@ -29,25 +29,36 @@ public class CustomerController {
 
     @GetMapping(path = "get_user/{username}")
     public Customer getUser(@PathVariable("username") String username, Principal principal) {
-        log.info(principal.getName());
-        return userService.getUser(username);
+        if (username.equals(principal.getName())) {
+            return userService.getUser(username);
+        }
+        throw new IllegalStateException(
+                "User not authorized to access information");
     }
 
     @PostMapping(path = "auth/signup")
     public void addUser(@RequestBody Customer user) {
-        log.info(user.toString());
         userService.addUser(user);
     }
 
     @DeleteMapping(path = "delete_user/{username}")
-    public void deleteUser(@PathVariable("username") String username) {
-        userService.deleteUser(username);
+    public void deleteUser(@PathVariable("username") String username, Principal principal) {
+        if (username.equals(principal.getName())) {
+            userService.deleteUser(username);
+        }
+        throw new IllegalStateException(
+                "User not authorized to access information");
     }
 
     @PutMapping(path = "update_user/{username}")
     public void updateUser(@PathVariable("username") String username,
-                           @RequestBody(required = false) Customer user) {
-        userService.updateUser(username, user);
+                           @RequestBody(required = false) Customer user,
+                           Principal principal) {
+        if (username.equals(principal.getName())) {
+            userService.updateUser(username, user);
+        }
+        throw new IllegalStateException(
+                "User not authorized to access information");
     }
 
         @GetMapping(path = "update_token")

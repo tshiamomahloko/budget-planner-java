@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -14,14 +15,21 @@ public class BudgetController {
     private final BudgetService budgetService;
 
     @GetMapping(path = "{username}/get-budgets")
-    public List<Budget> getCustomerBudgets(@PathVariable("username") String customerId){
-        return budgetService.getCustomerBudgets(customerId);
+    public List<Budget> getCustomerBudgets(@PathVariable("username") String username, Principal principal) {
+        if (username.equals(principal.getName())) {
+            return budgetService.getCustomerBudgets(username);
+        }
+        throw new IllegalStateException(
+                "User not authorized to access information");
     }
 
 
     @PostMapping(path = "{username}/add-budget")
-    public void addBudget(@PathVariable("username") String username, @RequestBody Budget budget) {
-        budgetService.addBudget(username, budget);
+    public void addBudget(@PathVariable("username") String username, @RequestBody Budget budget, Principal principal) {
+        if (username.equals(principal.getName())) {
+            budgetService.addBudget(username, budget);
+        } else throw new IllegalStateException(
+                "User not authorized to access information");
     }
 
     @PostMapping(path = "/{id}/add-cash-flow")
@@ -60,10 +68,10 @@ public class BudgetController {
         budgetService.replicateBudget(budgetID);
     }
 
-    @PatchMapping(value = "/{budgetID}")
+    @PutMapping(value = "/{budgetID}")
     @ResponseStatus(HttpStatus.OK)
-    public void modifyBudget(@PathVariable("budgetID")Long budgetID, @RequestParam("budgetName") String budgetName, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate  ){
-        budgetService.modifyBudget(budgetID, budgetName, startDate, endDate);
+    public void updateBudget(@PathVariable("budgetID")Long budgetID, @RequestBody Budget budget){
+        budgetService.updateBudget(budgetID, budget);
     }
 
 }
