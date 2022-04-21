@@ -32,7 +32,7 @@ public class CashFlowController {
 //        return null;
 //    }
 
-    @DeleteMapping(path="{username}/delete_cash_flow/{cashFlowId}")
+    @DeleteMapping(path="{username}/delete-cash-flow/{cashFlowId}")
     public void deleteCustomerCashFlowById(@PathVariable("username") String username, @PathVariable("cashFlowId") Long cashFlowId,Principal principal){
         if (username.equals(principal.getName())) {
             cashFlowService.removeCustomerCashFlowById(cashFlowId);

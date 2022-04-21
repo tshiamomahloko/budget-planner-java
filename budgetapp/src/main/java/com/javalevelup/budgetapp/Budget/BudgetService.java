@@ -62,20 +62,12 @@ public class BudgetService {
         return budgetRepository.findById(budgetID).get();
     }
 
-<<<<<<< HEAD
     public void addBudget(String username, Budget budget){
         Customer customer = customerRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         String.format("User with username %s does not exist", username)));
         Budget savedBudget = budgetRepository.save(budget);
         customer.addBudgetToCustomer(savedBudget);
-=======
-    public void addBudget(Budget budget){
-        if(budget.getStartDate().isAfter(budget.getEndDate())){
-            throw new IllegalStateException("The start date must be before end date.");
-        }
-        budgetRepository.save(budget);
->>>>>>> 9b62c07 (Throw Illegal Exception)
     }
 
     public void addCashflowToBudget(Long id, CashFlow cashFlow){
