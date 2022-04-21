@@ -1,7 +1,5 @@
 package com.javalevelup.budgetapp.Customer;
 
-import com.javalevelup.budgetapp.CashFlow.CashFlowRepository;
-import com.javalevelup.budgetapp.Budget.BudgetRepository;
 import com.javalevelup.budgetapp.Utils.SaveToRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +17,6 @@ import java.util.Objects;
 public class CustomerService implements UserDetailsService {
 
     private final CustomerRepository userRepository;
-    private final BudgetRepository budgetRepository;
-    private final CashFlowRepository cashFlowRepository;
     private final SaveToRepository saveToRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -83,7 +79,6 @@ public class CustomerService implements UserDetailsService {
                         String.format("User with username %s does not exist", username)));
 
         if (user == null) {
-            log.error("User not found");
             throw new UsernameNotFoundException("User not found");
         } else {
             log.info("User found in the database: {}", username);

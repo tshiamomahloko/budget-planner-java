@@ -1,7 +1,6 @@
 package com.javalevelup.budgetapp.Customer;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.javalevelup.budgetapp.Budget.Budget;
 import lombok.*;

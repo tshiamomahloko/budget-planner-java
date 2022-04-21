@@ -20,11 +20,9 @@ public class SaveToRepository {
 
     public Customer addUser(Customer user) {
 
-        log.info(user.toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Customer savedUser = userRepository.save(user);
         user.setId(savedUser.getId());
-//        savedUser.setBudgets(saveBudgets(user));
 
         return user;
     }
