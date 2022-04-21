@@ -74,7 +74,7 @@ function App() {
       case 4:
         return <BudgetCreate access={token} userName={userID} FECresponse1={() => setScreen(2)}></BudgetCreate>;
       case 5:
-        return <BudgetCreateSignUpOnly FECresponse1={() => setScreen(10)}></BudgetCreateSignUpOnly>;
+        return <BudgetCreateSignUpOnly access={token} FECresponse1={() => setScreen(10)}></BudgetCreateSignUpOnly>;
       case 6:
         return <ViewBudgets FECresponse1={() => setScreen(2)}></ViewBudgets>;
       case 7:
