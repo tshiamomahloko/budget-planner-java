@@ -48,7 +48,12 @@ public class BudgetService {
         return budgetRepository.findById(budgetID).get();
     }
 
+
     public void addBudget(String username, Budget budget){
+        if(budget.getStartDate().isAfter(budget.getEndDate())){
+            throw new IllegalStateException("The start date must be before end date.");
+        }
+  
         Customer customer = customerRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         String.format("User with username %s does not exist", username)));

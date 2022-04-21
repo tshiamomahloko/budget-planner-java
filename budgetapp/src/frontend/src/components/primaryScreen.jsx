@@ -17,9 +17,6 @@ function App(props) {
   const[remaining,setRemaining]=useState(0);
   useEffect(() => {
   
-
-   
-   // console.log("call from child: "+props.access);
     const data = {}
     let url = `http://localhost:8080/api/v1/budget/${props.userName}/get-budgets`
     const options = {
@@ -30,14 +27,12 @@ function App(props) {
       url
     }
     axios(options).then((response) => {
-    // console.log(response);
 
     setBudgetName(response.data[0].name);
 
     setIncomeAll(response.data[0].incomeTotal);
     setExpenseAll(Math.abs(response.data[0].expenseTotal));
     var endDate = new Date(response.data[0].endDate.split("-").reverse().join("-"));
-    console.log("end:: "+endDate);
     var today=new Date();
     var one_day=1000*60*60*24;
     setDays(Math.ceil((endDate-today.getTime())/(one_day)));
@@ -87,7 +82,6 @@ function App(props) {
 
 
     }).catch((error)=>{
-      console.log(error)
     })
   });
 

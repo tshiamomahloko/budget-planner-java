@@ -26,7 +26,6 @@ function App(props) {
     }
     axios(options)
       .then((response) => {
-        console.log(response)
         props.FECresponse3()
       })
       .catch((error) => {
