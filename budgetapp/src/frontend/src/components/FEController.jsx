@@ -44,8 +44,6 @@ function App() {
               (access,uID)=>{
                setToken(access);
                setUserID(uID);
-                console.log("call from parent: "+access)
-              //document.getElementById("primarytest").access=access;
               setScreen(2);
             }
             }
@@ -74,7 +72,7 @@ function App() {
           ></SignUp>
         );
       case 4:
-        return <BudgetCreate FECresponse1={() => setScreen(2)}></BudgetCreate>;
+        return <BudgetCreate access={token} userName={userID} FECresponse1={() => setScreen(2)}></BudgetCreate>;
       case 5:
         return <BudgetCreateSignUpOnly FECresponse1={() => setScreen(10)}></BudgetCreateSignUpOnly>;
       case 6:

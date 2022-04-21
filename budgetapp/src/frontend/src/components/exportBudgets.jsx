@@ -6,14 +6,12 @@ function App(props) {
 
   function addSelect(strChange) {
     list.push(strChange)
-    console.log(list)
   }
 
   function remSelect(strChange) {
     list = list.filter((item) => {
       return item !== strChange
     })
-    console.log(list)
   }
 
   return (

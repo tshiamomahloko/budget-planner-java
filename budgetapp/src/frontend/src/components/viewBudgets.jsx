@@ -26,7 +26,6 @@ function App(props) {
     setExisting(budget)
     setStart(bStart)
     setEnd(bEnd)
-    console.log('new budget: ' + budget)
   }
 
   function microControllerScreenReturn() {

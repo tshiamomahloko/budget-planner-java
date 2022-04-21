@@ -21,13 +21,10 @@ function App(props) {
       url
     }
     axios(options).then((response) => {
-     // console.log(response)
      access =response.data.access_token;
 
-     console.log(response);
      props.setAccessVar(access,username);
     }).catch((error)=>{
-      console.log(error)
      alert("The username and password combination does not exist, Sign up?")
     })
   }
