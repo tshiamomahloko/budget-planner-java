@@ -14,47 +14,56 @@ public class BudgetController {
     private final BudgetService budgetService;
 
     @GetMapping(path = "{username}/get-budgets")
+    @ResponseStatus(HttpStatus.OK)
     public List<Budget> getCustomerBudgets(@PathVariable("username") String customerId){
         return budgetService.getCustomerBudgets(customerId);
     }
 
 
     @PostMapping(path = "{username}/add-budget")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addBudget(@PathVariable("username") String username, @RequestBody Budget budget) {
         budgetService.addBudget(username, budget);
     }
 
-    @PostMapping(path = "/{id}/add-cash-flow")
-    public void addCashflowToBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow){
+    @PostMapping(path = "/{budgetID}/add-cash-flow")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addCashflowToBudget(@PathVariable("budgetID") Long id, @RequestBody CashFlow cashFlow){
+        System.out.println("Have you been hit?");
         budgetService.addCashflowToBudget(id, cashFlow);
     }
 
-    @DeleteMapping (path = "/{id}/remove-cash-flow")
-    public void removeCashFlowFromBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow) {
+    @DeleteMapping (path = "/{budgetID}/remove-cash-flow")
+    @ResponseStatus(HttpStatus.OK)
+    public void removeCashFlowFromBudget(@PathVariable("budgetID") Long id, @RequestBody CashFlow cashFlow) {
         budgetService.removeCashFlowFromBudget(id, cashFlow);
     }
 
     @GetMapping(value="/{budgetID}")
+    @ResponseStatus(HttpStatus.OK)
     public Budget getSingleBudgetById(@PathVariable("budgetID") Long budgetID){
         return budgetService.getBudgetByID(budgetID);
     }
 
     @GetMapping(path = "incomes/{budgetID}")
+    @ResponseStatus(HttpStatus.OK)
     public List<CashFlow> getBudgetIncomes(@PathVariable("budgetID") Long budgetID){
         return budgetService.getBudgetIncomes(budgetID);
     }
 
     @GetMapping(path = "expenses/{budgetID}")
+    @ResponseStatus(HttpStatus.OK)
     public List<CashFlow> getBudgetExpenses(@PathVariable("budgetID") Long budgetID){
         return budgetService.getBudgetExpenses(budgetID);
     }
 
     @GetMapping(path = "balance/{budgetID}")
+    @ResponseStatus(HttpStatus.OK)
     public Double getBudgetBalance(@PathVariable("budgetID") Long budgetID){
         return budgetService.getBudgetBalance(budgetID);
     }
 
-    @PostMapping(value = "/{budgetID}")
+    @PostMapping(value = "replicate/{budgetID}")
     @ResponseStatus(HttpStatus.CREATED)
     public void replicateBudget(@PathVariable("budgetID") Long budgetID){
         budgetService.replicateBudget(budgetID);
