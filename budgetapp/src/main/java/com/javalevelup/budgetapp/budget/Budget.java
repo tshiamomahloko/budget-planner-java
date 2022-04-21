@@ -1,9 +1,9 @@
-package com.javalevelup.budgetapp.Budget;
+package com.javalevelup.budgetapp.budget;
 
 import com.fasterxml.jackson.annotation.*;
 
-import com.javalevelup.budgetapp.CashFlow.CashFlow;
-import com.javalevelup.budgetapp.Customer.Customer;
+import com.javalevelup.budgetapp.cashflow.CashFlow;
+import com.javalevelup.budgetapp.customer.Customer;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;

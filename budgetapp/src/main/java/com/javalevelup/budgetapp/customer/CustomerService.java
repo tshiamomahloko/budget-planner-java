@@ -1,6 +1,6 @@
-package com.javalevelup.budgetapp.Customer;
+package com.javalevelup.budgetapp.customer;
 
-import com.javalevelup.budgetapp.Utils.SaveToRepository;
+import com.javalevelup.budgetapp.utils.SaveToRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;

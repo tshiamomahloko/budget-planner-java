@@ -1,8 +1,8 @@
-package com.javalevelup.budgetapp.Budget;
+package com.javalevelup.budgetapp.budget;
 
-import com.javalevelup.budgetapp.CashFlow.CashFlow;
-import com.javalevelup.budgetapp.Customer.Customer;
-import com.javalevelup.budgetapp.Customer.CustomerRepository;
+import com.javalevelup.budgetapp.cashflow.CashFlow;
+import com.javalevelup.budgetapp.customer.Customer;
+import com.javalevelup.budgetapp.customer.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

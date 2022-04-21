@@ -1,4 +1,4 @@
-package com.javalevelup.budgetapp.CashFlow;
+package com.javalevelup.budgetapp.cashflow;
 
 public enum CashFlowType {
     INCOME,

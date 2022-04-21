@@ -1,6 +1,6 @@
-package com.javalevelup.budgetapp.Budget;
+package com.javalevelup.budgetapp.budget;
 
-import com.javalevelup.budgetapp.CashFlow.CashFlow;
+import com.javalevelup.budgetapp.cashflow.CashFlow;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

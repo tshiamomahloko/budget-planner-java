@@ -1,10 +1,10 @@
-package com.javalevelup.budgetapp.CashFlow;
+package com.javalevelup.budgetapp.cashflow;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.javalevelup.budgetapp.Budget.Budget;
-import com.javalevelup.budgetapp.Customer.Customer;
+import com.javalevelup.budgetapp.budget.Budget;
+import com.javalevelup.budgetapp.customer.Customer;
 import lombok.*;
 import org.hibernate.Hibernate;
 
