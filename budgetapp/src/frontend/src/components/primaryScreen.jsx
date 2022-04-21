@@ -61,9 +61,10 @@ function App(props) {
     if (elem4.innerHTML<0){
       elem4.style.color="rgba(251, 137, 107, 255)";
       var transamount=elem4.innerHTML.substr(1);
-      elem4.innerHTML="-R"+transamount;
+      elem4.innerHTML="-R"+transamount+".00";
     }
     else{
+      elem4.innerHTML="R"+elem4.innerHTML+".00";
       elem4.style.color="rgb(80, 70, 187)";
     }
 
@@ -85,15 +86,19 @@ function App(props) {
     })
   });
 
- 
+
   function MinimizeMenu(){
     document.getElementById("primaryScreenCMP1").style.visibility="hidden";
     document.getElementById("primaryScreenCMP2").style.visibility="hidden";
+    document.getElementById("bubbleMain").style.visibility="visible";
+    document.getElementById("pointerMain").style.visibility="visible";
   }
 
   function MaximizeMenu(){
     document.getElementById("primaryScreenCMP2").style.visibility="visible";
     document.getElementById("primaryScreenCMP1").style.visibility="visible";
+    document.getElementById("bubbleMain").style.visibility="hidden";
+    document.getElementById("pointerMain").style.visibility="hidden";
   }
 
 
@@ -111,12 +116,12 @@ function App(props) {
         <button onClick={() => props.FECresponse2()}className="primaryScreenAddBudget">+</button>
       </div>
 
-      <div class="bubble">Balance: {balanceAll}</div>
-	<div class="pointer"></div>
+      <div class="bubble" id="bubbleMain">Balance: {balanceAll}.00</div>
+	<div class="pointer" id="pointerMain"></div>
       <div className="primaryScreenIncomeExpenseVisualizer">
         <div className="primaryScreenIncomeVisualizer">
           <div className="primaryScreenIncomeTitle">Income</div>
-          <div className="primaryScreenIncomeDisplay">R{incomeAll}</div>
+          <div className="primaryScreenIncomeDisplay">R{incomeAll}.00</div>
         </div>
         <div className="primaryScreenExpenseVisualizer">
           <img
@@ -124,7 +129,7 @@ function App(props) {
             className="primaryScreenIncomeExpenseVisualizerGraphic"
           ></img>
           <div className="primaryScreenExpenseTitle">Expenses</div>
-          <div className="primaryScreenExpenseDisplay">R{expenseAll}</div>
+          <div className="primaryScreenExpenseDisplay">R{expenseAll}.00</div>
         </div>
       </div>
 
@@ -134,7 +139,7 @@ function App(props) {
       </div>
 
       <div className="primaryScreenAmountRemainingContainer">
-        <div className="primaryScreenAmountRemainingCounter">R{remaining}</div>
+        <div className="primaryScreenAmountRemainingCounter">R{remaining}.00</div>
         <div className="primaryScreenAmountRemainingSubText">Left/day</div>
       </div>
 
@@ -149,7 +154,7 @@ function App(props) {
       <button onClick={() => props.FECresponse5()} className="primaryScreenAddIncomeExpense">+</button>
       <div id="primaryScreenCMP1" className="primaryScreenSlideOutMenu">
       <div className="primaryScreenSlideOutMenuTitle">
-        Paulo N.
+        @{props.userName}
         </div>
         <button onClick={() => props.FECresponse1()} className="primaryScreenSlideOutMenuSignOut">
           {"Sign out"}
