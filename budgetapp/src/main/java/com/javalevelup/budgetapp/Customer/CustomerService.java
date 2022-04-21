@@ -31,14 +31,20 @@ public class CustomerService implements UserDetailsService {
     }
 
     public void addUser(Customer user) {
-        if (userRepository.isEmailPresent(user.getEmail()) > 0) {
-            throw new IllegalStateException(
-                    "Email already exists");
-        } else if (userRepository.isUsernamePresent(user.getUsername()) > 0) {
-            throw new IllegalStateException(
-                    "Username already exists");
+        if (user.getEmail() == null || user.getEmail().isEmpty() || userRepository.isEmailPresent(user.getEmail()) > 0) {
+            if (user.getEmail() == null || user.getEmail().isEmpty()) {
+                throw new IllegalStateException("Email not provided");
+            } else throw new IllegalStateException("Email already exists");
+        } else if (user.getUsername() == null || user.getUsername().isEmpty() ||userRepository.isUsernamePresent(user.getUsername()) > 0) {
+            if (user.getUsername() == null || user.getUsername().isEmpty()) {
+                throw new IllegalStateException("Username not provided");
+            } else throw new IllegalStateException("Username already exists");
+        } else {
+            if (user.getPassword() == null || user.getPassword().isEmpty()) {
+                throw new IllegalStateException("Password not provided");
+            }
+            saveToRepository.addUser(user);
         }
-        saveToRepository.addUser(user);
     }
 
     public void deleteUser(String username) {
