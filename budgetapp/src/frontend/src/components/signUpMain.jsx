@@ -5,14 +5,20 @@ import passico from '../passico.png'
 import axios from 'axios'
 
 function App(props) {
+  let apiData = {}
+  let username = ''
+  let email = ''
+  let password = ''
+  let access = ''
+
   let createPost = () => {
-    let username = document.getElementById(
+    username = document.getElementById(
       'signUpNameContainerInputSpaceIdentifier'
     ).value
-    let email = document.getElementById(
+    email = document.getElementById(
       'signUpEmailContainerInputSpaceIdentifier'
     ).value
-    let password = document.getElementById(
+    password = document.getElementById(
       'signUpPasswordContainerInputSpaceIdentifier'
     ).value
 
@@ -26,11 +32,34 @@ function App(props) {
     }
     axios(options)
       .then((response) => {
-        props.FECresponse3()
+        apiData = response
       })
       .catch((error) => {
         alert('Error: username or email already exists')
       })
+
+    setTimeout(() => {
+      if (apiData.status === 200) {
+        loginUser(username, password)
+        // props.setAccessVar(access, username)
+        props.FECresponse3()
+      }
+    }, 3000)
+  }
+
+  let loginUser = (username, password) => {
+    const data = { username: username, password: password }
+    let url = 'http://localhost:8080/api/v1/users/auth/login'
+    const options = {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      data: data,
+      url
+    }
+    axios(options).then((response) => {
+      console.log('Login data: ', response)
+      access = response.data.access_token
+    })
   }
   return (
     <div className='signUpMain'>

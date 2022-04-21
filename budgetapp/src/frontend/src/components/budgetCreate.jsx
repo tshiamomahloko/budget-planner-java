@@ -1,8 +1,9 @@
-import "../component-styles/budgetCreate.css";
-import write from "../write.png";
+import '../component-styles/budgetCreate.css'
+import write from '../write.png'
 import axios from 'axios'
 
 function App(props) {
+  console.log('We at props of creation now: ',props)
   let createPost = () => {
     let budgetData = {
       name: document.getElementById('budgetNameID').value,
@@ -38,21 +39,42 @@ function App(props) {
       })
   }
   return (
-    <div className="budgetCreateMain">
-      <div className="budgetCreateSignUpOnlyTitle">First up, let's create a budget</div>
-    <div className ="budgetCreateBudgetCreationContainer">
-      <div className ="budgetCreateBudgetNameInputIconSpace"><img src={write} className ="budgetCreateBudgetNameInputIcon"></img></div>
-   <div className="budgetCreateBudgetStartInputTitle">Start Date</div>
-   <div className="budgetCreateBudgetEndInputTitle">End Date</div>
-    <input id="budgetNameID" placeholder= "Budget Name" className="budgetCreateBudgetNameInput"></input>
-      <input id="1di" type="date" placeholder="Start" className="budgetCreateBudgetStartInput"></input>
-      <input id="endDateID" type="date" placeholder= "End" className="budgetCreateBudgetEndInput"></input>
+    <div className='budgetCreateMain'>
+      <div className='budgetCreateSignUpOnlyTitle'>
+        First up, let's create a budget
+      </div>
+      <div className='budgetCreateBudgetCreationContainer'>
+        <div className='budgetCreateBudgetNameInputIconSpace'>
+          <img src={write} className='budgetCreateBudgetNameInputIcon'></img>
+        </div>
+        <div className='budgetCreateBudgetStartInputTitle'>Start Date</div>
+        <div className='budgetCreateBudgetEndInputTitle'>End Date</div>
+        <input
+          id='budgetNameID'
+          placeholder='Budget Name'
+          className='budgetCreateBudgetNameInput'
+        ></input>
+        <input
+          id='1di'
+          type='date'
+          placeholder='Start'
+          className='budgetCreateBudgetStartInput'
+        ></input>
+        <input
+          id='endDateID'
+          type='date'
+          placeholder='End'
+          className='budgetCreateBudgetEndInput'
+        ></input>
+      </div>
+      <button
+        onClick={() => createPost()}
+        className='budgetCreateBudgetCreationButton'
+      >
+        Create Budget
+      </button>
     </div>
-    <button onClick={()=>createPost()}className ="budgetCreateBudgetCreationButton">
-      Create Budget
-    </button>
-    </div>
-  );
+  )
 }
 
-export default App;
+export default App
