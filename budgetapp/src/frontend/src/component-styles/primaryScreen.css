@@ -210,7 +210,7 @@ padding-top: 10px;
 
 .primaryScreenAddIncomeExpense{
     width:60px;
-    height:60px;
+    height:59px;
     border:none;
     border-radius: 100%;
     position: absolute;
@@ -223,7 +223,7 @@ padding-top: 10px;
     color: rgb(98, 0, 255);
     font-size: 55px;
     line-height:80%;
-    padding: 0px 2px 6px 3px;
+    /* padding: 0px 2px 6px 3px; */
 }
 
 body{
@@ -351,4 +351,38 @@ body{
     top:0px;
     background-color: rgba(129, 129, 129, 0.637);
     visibility: hidden;
+}
+
+
+.bubble {
+	height: 40px;
+	width: 70px;
+	background: rgb(255,255,255);
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	border-radius: 9px;
+
+	font-size: 13px;
+    font-weight:600;
+	text-align: center;
+
+    position: absolute;
+    top:160px;
+    left:calc(50vw - 55px);
+    z-index: 11;
+
+}
+
+.pointer {
+    top:185px;
+    left: calc(50vw - 16px);
+    z-index: 10;
+    position: absolute;
+	height: 20px;
+	width: 20px;
+	transform: rotate(225deg);
+	border-radius: 0 0 12px 0px;
+	
+    background-color: rgb(255, 255, 255);
 }

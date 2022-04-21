@@ -42,8 +42,8 @@ function App() {
             FECresponse3={() => setScreen(3)}
             setAccessVar={
               (access,uID)=>{
-               setToken(access);
-               setUserID(uID);
+              setToken(access);
+              setUserID(uID);
               setScreen(2);
             }
             }

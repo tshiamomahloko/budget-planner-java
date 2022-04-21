@@ -12,6 +12,7 @@ function App(props) {
   const [budgetName, setBudgetName] = useState("");
   const[incomeAll,setIncomeAll]= useState(0);
   const[expenseAll,setExpenseAll]=useState(0);
+  const[balanceAll,setbalanceAll]=useState(0);
   const[days,setDays]=useState(0);
   const[remaining,setRemaining]=useState(0);
   useEffect(() => {
@@ -35,7 +36,8 @@ function App(props) {
     var today=new Date();
     var one_day=1000*60*60*24;
     setDays(Math.ceil((endDate-today.getTime())/(one_day)));
-    var rem = (response.data[0].incomeTotal-Math.abs(response.data[0].expenseTotal))/days;
+    setbalanceAll(response.data[0].incomeTotal-Math.abs(response.data[0].expenseTotal));
+    var rem = (balanceAll)/days;
     if (rem<0){
       rem=0;
     }
@@ -55,12 +57,27 @@ function App(props) {
     var elem4 = document.createElement("div");
     elem4.className="transactionItemAmount";
     elem4.innerHTML=response.data[0].cashFlows[i].amount;
+
+    if (elem4.innerHTML<0){
+      elem4.style.color="rgba(251, 137, 107, 255)";
+      var transamount=elem4.innerHTML.substr(1);
+      elem4.innerHTML="-R"+transamount+".00";
+    }
+    else{
+      elem4.innerHTML="R"+elem4.innerHTML+".00";
+      elem4.style.color="rgb(80, 70, 187)";
+    }
+
     var elem5 = document.createElement("div");
     elem5.className="transactionItemMain";
     elem5.appendChild(elem2);
     elem5.appendChild(elem3);
+  
+  
+
     elem5.appendChild(elem4);
     document.getElementById("primaryScreenTransactionListContainerIdentifier").appendChild(elem5);
+
      }
   }
 
@@ -69,20 +86,26 @@ function App(props) {
     })
   });
 
- 
+
   function MinimizeMenu(){
     document.getElementById("primaryScreenCMP1").style.visibility="hidden";
     document.getElementById("primaryScreenCMP2").style.visibility="hidden";
+    document.getElementById("bubbleMain").style.visibility="visible";
+    document.getElementById("pointerMain").style.visibility="visible";
   }
 
   function MaximizeMenu(){
     document.getElementById("primaryScreenCMP2").style.visibility="visible";
     document.getElementById("primaryScreenCMP1").style.visibility="visible";
+    document.getElementById("bubbleMain").style.visibility="hidden";
+    document.getElementById("pointerMain").style.visibility="hidden";
   }
 
 
   return (
     <div className="primaryScreenMain">
+
+
       <div className="primaryScreenMenuBar">
         <button onClick ={()=>MaximizeMenu()} className="primaryScreenBurgerMenuButton">
           <img src={menu} className="primaryScreenBurgerMenuIcon"></img>
@@ -92,10 +115,13 @@ function App(props) {
         </button>
         <button onClick={() => props.FECresponse2()}className="primaryScreenAddBudget">+</button>
       </div>
+
+      <div class="bubble" id="bubbleMain">Balance: {balanceAll}.00</div>
+	<div class="pointer" id="pointerMain"></div>
       <div className="primaryScreenIncomeExpenseVisualizer">
         <div className="primaryScreenIncomeVisualizer">
           <div className="primaryScreenIncomeTitle">Income</div>
-          <div className="primaryScreenIncomeDisplay">R{incomeAll}</div>
+          <div className="primaryScreenIncomeDisplay">R{incomeAll}.00</div>
         </div>
         <div className="primaryScreenExpenseVisualizer">
           <img
@@ -103,7 +129,7 @@ function App(props) {
             className="primaryScreenIncomeExpenseVisualizerGraphic"
           ></img>
           <div className="primaryScreenExpenseTitle">Expenses</div>
-          <div className="primaryScreenExpenseDisplay">R{expenseAll}</div>
+          <div className="primaryScreenExpenseDisplay">R{expenseAll}.00</div>
         </div>
       </div>
 
@@ -113,7 +139,7 @@ function App(props) {
       </div>
 
       <div className="primaryScreenAmountRemainingContainer">
-        <div className="primaryScreenAmountRemainingCounter">R{remaining}</div>
+        <div className="primaryScreenAmountRemainingCounter">R{remaining}.00</div>
         <div className="primaryScreenAmountRemainingSubText">Left/day</div>
       </div>
 
@@ -128,7 +154,7 @@ function App(props) {
       <button onClick={() => props.FECresponse5()} className="primaryScreenAddIncomeExpense">+</button>
       <div id="primaryScreenCMP1" className="primaryScreenSlideOutMenu">
       <div className="primaryScreenSlideOutMenuTitle">
-        Paulo N.
+        @{props.userName}
         </div>
         <button onClick={() => props.FECresponse1()} className="primaryScreenSlideOutMenuSignOut">
           {"Sign out"}
