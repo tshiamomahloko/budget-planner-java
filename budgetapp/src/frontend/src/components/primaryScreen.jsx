@@ -12,13 +12,14 @@ function App(props) {
   const [budgetName, setBudgetName] = useState("");
   const[incomeAll,setIncomeAll]= useState(0);
   const[expenseAll,setExpenseAll]=useState(0);
+  const[balanceAll,setbalanceAll]=useState(0);
   const[days,setDays]=useState(0);
   const[remaining,setRemaining]=useState(0);
   useEffect(() => {
   
 
    
-    console.log("call from child: "+props.access);
+   // console.log("call from child: "+props.access);
     const data = {}
     let url = `http://localhost:8080/api/v1/budget/${props.userName}/get-budgets`
     const options = {
@@ -29,7 +30,7 @@ function App(props) {
       url
     }
     axios(options).then((response) => {
-     console.log(response);
+    // console.log(response);
 
     setBudgetName(response.data[0].name);
 
@@ -40,7 +41,8 @@ function App(props) {
     var today=new Date();
     var one_day=1000*60*60*24;
     setDays(Math.ceil((endDate-today.getTime())/(one_day)));
-    var rem = (response.data[0].incomeTotal-Math.abs(response.data[0].expenseTotal))/days;
+    setbalanceAll(response.data[0].incomeTotal-Math.abs(response.data[0].expenseTotal));
+    var rem = (balanceAll)/days;
     if (rem<0){
       rem=0;
     }
@@ -60,12 +62,26 @@ function App(props) {
     var elem4 = document.createElement("div");
     elem4.className="transactionItemAmount";
     elem4.innerHTML=response.data[0].cashFlows[i].amount;
+
+    if (elem4.innerHTML<0){
+      elem4.style.color="rgba(251, 137, 107, 255)";
+      var transamount=elem4.innerHTML.substr(1);
+      elem4.innerHTML="-R"+transamount;
+    }
+    else{
+      elem4.style.color="rgb(80, 70, 187)";
+    }
+
     var elem5 = document.createElement("div");
     elem5.className="transactionItemMain";
     elem5.appendChild(elem2);
     elem5.appendChild(elem3);
+  
+  
+
     elem5.appendChild(elem4);
     document.getElementById("primaryScreenTransactionListContainerIdentifier").appendChild(elem5);
+
      }
   }
 
@@ -89,6 +105,8 @@ function App(props) {
 
   return (
     <div className="primaryScreenMain">
+
+
       <div className="primaryScreenMenuBar">
         <button onClick ={()=>MaximizeMenu()} className="primaryScreenBurgerMenuButton">
           <img src={menu} className="primaryScreenBurgerMenuIcon"></img>
@@ -98,6 +116,9 @@ function App(props) {
         </button>
         <button onClick={() => props.FECresponse2()}className="primaryScreenAddBudget">+</button>
       </div>
+
+      <div class="bubble">Balance: {balanceAll}</div>
+	<div class="pointer"></div>
       <div className="primaryScreenIncomeExpenseVisualizer">
         <div className="primaryScreenIncomeVisualizer">
           <div className="primaryScreenIncomeTitle">Income</div>

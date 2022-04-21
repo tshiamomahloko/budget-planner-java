@@ -44,7 +44,7 @@ function App() {
               (access,uID)=>{
                setToken(access);
                setUserID(uID);
-                console.log("call from parent: "+access)
+             //   console.log("call from parent: "+access)
               //document.getElementById("primarytest").access=access;
               setScreen(2);
             }
