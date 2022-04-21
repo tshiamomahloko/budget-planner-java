@@ -27,26 +27,25 @@ public class CashFlowService  {
         return cashFlowRepository.save(cashFlow);
     }
 
-    public List<CashFlow> getCustomerCashFlows(Long customerId){
-        return cashFlowRepository.findByCustomerId(customerId);
+    public List<CashFlow> getCustomerCashFlows(String username){
+        return cashFlowRepository.findByCustomerUsername(username);
     }
 
-    public Optional<CashFlow> getCustomerCashFlowById(Long customerId, Long budgetId){
-        return  getCustomerCashFlows(customerId).stream()
-                .filter(cf -> cf.getId().equals(budgetId))
-                .findFirst();
-    }
+//    public Optional<CashFlow> getCustomerCashFlowById(Long customerId, Long budgetId){
+//        return  getCustomerCashFlows(customerId).stream()
+//                .filter(cf -> cf.getId().equals(budgetId))
+//                .findFirst();
+//    }
 
-    public ResponseEntity<String> removeCustomerCashFlowById(Long cashFlowId) {
+    public void removeCustomerCashFlowById(Long cashFlowId) {
         try{
             Optional<CashFlow> cashflow = cashFlowRepository.findById(cashFlowId);
             List<Budget> budgets = new ArrayList<>();
             cashflow.ifPresent(cf -> budgets.addAll(cf.getBudgets()));
             budgets.stream().forEach(b -> b.removeCashFlowFromBudget(cashflow.get()));
             cashFlowRepository.deleteById(cashFlowId);
-            return ResponseEntity.ok("Deleted cashflow");
         }catch(Exception e){
-            return ResponseEntity.ok(e.toString());
+             throw new IllegalStateException(e.getMessage());
         }
 
     }

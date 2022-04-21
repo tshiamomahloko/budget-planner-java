@@ -36,12 +36,26 @@ public class BudgetService {
         budgetRepository.save(new Budget(budget.getName(), budget.getStartDate(), budget.getEndDate(), budget.getCustomer()));
     }
 
-    public void modifyBudget(Long budgetID, String budgetName, String startDate, String endDate){
-        Budget modifiedBudget = budgetRepository.findById(budgetID).get();
-        modifiedBudget.setName(budgetName);
-        modifiedBudget.setStartDate(LocalDate.parse(startDate));
-        modifiedBudget.setEndDate(LocalDate.parse(endDate));
-        budgetRepository.save(modifiedBudget);
+    public void updateBudget(Long budgetID, Budget budget){
+        if (budgetRepository.findById(budgetID).isPresent()) {
+            Budget modifiedBudget = budgetRepository.findById(budgetID).get();
+            if (budget.getName() != null && !budget.getName().isEmpty()) {
+                if (!modifiedBudget.getName().equals(budget.getName())) {
+                    modifiedBudget.setName(budget.getName());
+                }
+            }
+            if (budget.getStartDate() != null) {
+                if (!modifiedBudget.getStartDate().equals(budget.getStartDate())) {
+                    modifiedBudget.setStartDate(budget.getStartDate());
+                }
+            }
+            if (budget.getEndDate() != null) {
+                if (!modifiedBudget.getEndDate().equals(budget.getEndDate())) {
+                    modifiedBudget.setEndDate(budget.getEndDate());
+                }
+            }
+            budgetRepository.save(modifiedBudget);
+        }
     }
 
     public Budget getBudgetByID(Long budgetID){
@@ -67,9 +81,8 @@ public class BudgetService {
             budget.addCashFlowToBudget(cashFlow);
             budgetRepository.save(budget);
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            throw new IllegalStateException(e.getMessage());
         }
-
     }
 
     public void removeCashFlowFromBudget(Long id, CashFlow cashFlow){
