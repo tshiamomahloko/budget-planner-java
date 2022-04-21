@@ -1,52 +1,81 @@
-import "../component-styles/loginMain.css";
-import emailico from '../emailico.png';
-import passico from '../passico.png';
+import '../component-styles/loginMain.css'
+import userico from '../userico.png'
+import passico from '../passico.png'
+import axios from 'axios'
 
 function App(props) {
+  let access = "";
+  let createPost = () => {
+    let username = document.getElementById(
+      'loginUsernameContainerInputSpaceIdentifier'
+    ).value
+    let password = document.getElementById(
+      'loginPasswordContainerInputSpaceIdentifier'
+    ).value
+    const data = { username: username, password: password }
+    let url = 'http://localhost:8080/api/v1/users/auth/login'
+    const options = {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      data: data,
+      url
+    }
+    axios(options).then((response) => {
+     access =response.data.access_token;
+
+     props.setAccessVar(access,username);
+    }).catch((error)=>{
+     alert("The username and password combination does not exist, Sign up?")
+    })
+  }
   return (
-    <div className="loginMain">
-      <div className="loginContainer">
+    <div className='loginMain'>
+      <div className='loginContainer'>
         <button
-          onClick={() => props.FECresponse2()}
-          className="loginMainLoginButton"
+          onClick={() => {
+            createPost()
+          }}
+          className='loginMainLoginButton'
         >
           Log In
         </button>
-        <div className="loginMainButtonSeperator">- or -</div>
+        <div className='loginMainButtonSeperator'>- or -</div>
         <button
           onClick={() => props.FECresponse3()}
-          className="loginMainSignUpButton"
+          className='loginMainSignUpButton'
         >
           Sign Up
         </button>
 
-        <div className="loginEmailContainer">
-          <div className="loginEmailContainerIconSpace">
-            <img src={emailico} className="loginIcons"></img>
+        <div className='loginEmailContainer'>
+          <div className='loginEmailContainerIconSpace'>
+            <img src={userico} className='loginIcons'></img>
           </div>
           <input
-            placeholder="Email"
-            className="loginEmailContainerInputSpace"
+            id='loginUsernameContainerInputSpaceIdentifier'
+            placeholder='Username'
+            className='loginEmailContainerInputSpace'
           ></input>
         </div>
-        <div className="loginPasswordContainer">
-          <div className="loginPasswordContainerIconSpace">
-            <img src={passico} className="loginIcons"></img>
+        <div className='loginPasswordContainer'>
+          <div className='loginPasswordContainerIconSpace'>
+            <img src={passico} className='loginIcons'></img>
           </div>
           <input
-            placeholder="Password"
-            type="password"
-            className="loginPasswordContainerInputSpace"
+            id='loginPasswordContainerInputSpaceIdentifier'
+            placeholder='Password'
+            type='password'
+            className='loginPasswordContainerInputSpace'
           ></input>
         </div>
       </div>
 
-      <div className="loginTitle">Welcome Back</div>
-      <button onClick={() => props.FECresponse1()} className="loginBackButton">
-        {"< Back"}
+      <div className='loginTitle'>Welcome Back</div>
+      <button onClick={() => props.FECresponse1()} className='loginBackButton'>
+        {'< Back'}
       </button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

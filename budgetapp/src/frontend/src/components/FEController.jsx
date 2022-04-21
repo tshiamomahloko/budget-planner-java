@@ -13,7 +13,18 @@ import IncomeCreate from "./incomeCreate.jsx";
 import ExpenseCreate from "./expenseCreate.jsx";
 
 function App() {
+
+  const [token, setToken] = useState("");
+  const [userID, setUserID] = useState("");
   const [screen, setScreen] = useState(0);
+  var rendered=[];
+  function isInside(CFID){
+   return rendered.includes(CFID);
+  }
+
+  function addInside(CFID){
+    rendered.push(CFID);
+  }
 
   function screenToShow() {
     switch (screen) {
@@ -26,20 +37,30 @@ function App() {
         );
       case 1:
         return (
-          <Login
+          <Login 
             FECresponse1={() => setScreen(0)}
-            FECresponse2={() => setScreen(2)}
             FECresponse3={() => setScreen(3)}
+            setAccessVar={
+              (access,uID)=>{
+              setToken(access);
+              setUserID(uID);
+              setScreen(2);
+            }
+            }
           ></Login>
         );
       case 2:
         return (
-          <PrimaryScreen
+          <PrimaryScreen id ="primarytest"
+          access={token}
+          userName={userID}
             FECresponse1={() => setScreen(0)}
             FECresponse2={() => setScreen(4)}
             FECresponse3={() => setScreen(6)}
             FECresponse4={() => setScreen(7)}
             FECresponse5={() => setScreen(8)}
+            includesCFID={(CFID)=>isInside(CFID)}
+            pushCFID={(CFID)=>addInside(CFID)}
           ></PrimaryScreen>
         );
       case 3:
@@ -51,7 +72,7 @@ function App() {
           ></SignUp>
         );
       case 4:
-        return <BudgetCreate FECresponse1={() => setScreen(2)}></BudgetCreate>;
+        return <BudgetCreate access={token} userName={userID} FECresponse1={() => setScreen(2)}></BudgetCreate>;
       case 5:
         return <BudgetCreateSignUpOnly FECresponse1={() => setScreen(10)}></BudgetCreateSignUpOnly>;
       case 6:
