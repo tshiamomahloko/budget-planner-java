@@ -1,18 +1,15 @@
-package com.javalevelup.budgetapp.Budget;
+package com.javalevelup.budgetapp.budget;
 
-import com.javalevelup.budgetapp.CashFlow.CashFlow;
-import com.javalevelup.budgetapp.Customer.Customer;
-import com.javalevelup.budgetapp.Customer.CustomerRepository;
+import com.javalevelup.budgetapp.cashflow.CashFlow;
+import com.javalevelup.budgetapp.customer.Customer;
+import com.javalevelup.budgetapp.customer.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,7 +56,10 @@ public class BudgetService {
     }
 
     public Budget getBudgetByID(Long budgetID){
-        return budgetRepository.findById(budgetID).get();
+        if (budgetRepository.findById(budgetID).isPresent()) {
+            return budgetRepository.findById(budgetID).get();
+        }
+        return null;
     }
 
     public void addBudget(String username, Budget budget){
@@ -70,6 +70,7 @@ public class BudgetService {
         Customer customer = customerRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         String.format("User with username %s does not exist", username)));
+        log.info(customer.toString());
         Budget savedBudget = budgetRepository.save(budget);
         customer.addBudgetToCustomer(savedBudget);
     }

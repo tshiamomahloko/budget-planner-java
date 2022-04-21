@@ -1,4 +1,4 @@
-package com.javalevelup.budgetapp.Customer;
+package com.javalevelup.budgetapp.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

@@ -1,9 +1,8 @@
-package com.javalevelup.budgetapp.Customer;
+package com.javalevelup.budgetapp.customer;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.javalevelup.budgetapp.Budget.Budget;
+import com.javalevelup.budgetapp.budget.Budget;
 import lombok.*;
 import org.hibernate.Hibernate;
 

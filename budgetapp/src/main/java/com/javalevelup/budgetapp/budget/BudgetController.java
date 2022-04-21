@@ -1,6 +1,6 @@
-package com.javalevelup.budgetapp.Budget;
+package com.javalevelup.budgetapp.budget;
 
-import com.javalevelup.budgetapp.CashFlow.CashFlow;
+import com.javalevelup.budgetapp.cashflow.CashFlow;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -35,11 +35,6 @@ public class BudgetController {
     @PostMapping(path = "/{id}/add-cash-flow")
     public void addCashflowToBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow){
         budgetService.addCashflowToBudget(id, cashFlow);
-    }
-
-    @DeleteMapping (path = "/{id}/remove-cash-flow")
-    public void removeCashFlowFromBudget(@PathVariable("id") Long id, @RequestBody CashFlow cashFlow) {
-        budgetService.removeCashFlowFromBudget(id, cashFlow);
     }
 
     @GetMapping(value="/{budgetID}")

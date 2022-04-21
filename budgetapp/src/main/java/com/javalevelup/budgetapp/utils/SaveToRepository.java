@@ -1,9 +1,9 @@
-package com.javalevelup.budgetapp.Utils;
+package com.javalevelup.budgetapp.utils;
 
-import com.javalevelup.budgetapp.Customer.Customer;
-import com.javalevelup.budgetapp.CashFlow.CashFlowRepository;
-import com.javalevelup.budgetapp.Budget.BudgetRepository;
-import com.javalevelup.budgetapp.Customer.CustomerRepository;
+import com.javalevelup.budgetapp.customer.Customer;
+import com.javalevelup.budgetapp.cashflow.CashFlowRepository;
+import com.javalevelup.budgetapp.budget.BudgetRepository;
+import com.javalevelup.budgetapp.customer.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,11 +20,9 @@ public class SaveToRepository {
 
     public Customer addUser(Customer user) {
 
-        log.info(user.toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Customer savedUser = userRepository.save(user);
         user.setId(savedUser.getId());
-//        savedUser.setBudgets(saveBudgets(user));
 
         return user;
     }

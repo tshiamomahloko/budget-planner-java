@@ -1,4 +1,4 @@
-package com.javalevelup.budgetapp.CashFlow;
+package com.javalevelup.budgetapp.cashflow;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,6 +10,4 @@ public interface CashFlowRepository  extends JpaRepository<CashFlow, Long>{
     List<CashFlow> findByCustomerId(Long customerID);
 
     List<CashFlow> findByCustomerUsername(String username);
-//    @Query("SELECT b FROM cashflow WHERE b.userID = ?1")
-//    List<Budget> findBudgetsByUserID(Long userID);
 }

@@ -1,9 +1,8 @@
-package com.javalevelup.budgetapp.CashFlow;
+package com.javalevelup.budgetapp.cashflow;
 
-import com.javalevelup.budgetapp.Budget.Budget;
+import com.javalevelup.budgetapp.budget.Budget;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
